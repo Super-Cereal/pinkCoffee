@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <%- include(".common/head", 
-    {alias: alias}) %>
+    <%- include("./common/head", { alias }) %>
   </head>
-  <body class="">
-    <%- include(".common/header", {
-    title: data.title,
-    subtitle: data.subtitle
+  <body class="light-theme">
+    <%- include("./common/header", { title: data.title, subtitle: data.subtitle
     }) %>
-    <main>
-      
+    <main class="Content">
+      <div class="Pedestal" id="n-pedestal">
+        <div class="Pedestal__info">
+          <img src=<%= "/img/" + data.users[4].avatar %> alt="img" />
+          <h2><%= data.users[4].name %></h2>
+          <span><%= data.users[4].valueText %></span>
+        </div>
+        <div class="Pedestal__block">
+          <span class="font-heavy">5</span>
+        </div>
+      </div>
+      <div class="Pedestal Pedestal_medium">
+        <div class="Pedestal__info">
+          <img src=<%= "/img/" + data.users[2].avatar %> alt="img" />
+          <h2><%= data.users[2].name %></h2>
+          <span><%= data.users[2].valueText %></span>
+        </div>
+        <div class="Pedestal__block">
+          <span class="font-heavy">3</span>
+        </div>
+      </div>
+      <div class="Pedestal Pedestal_high">
+        <div class="Pedestal__info">
+          <img src=<%= "/img/" + data.users[0].avatar %> alt="img" />
+          <h2><%= data.users[0].name %></h2>
+          <span><%= data.users[0].valueText %></span>
+        </div>
+        <div class="Pedestal__block">
+          <span class="font-heavy">1</span>
+        </div>
+       </div>
+      <div class="Pedestal Pedestal_medium">
+        <div class="Pedestal__info">
+          <img src=<%= "/img/" + data.users[1].avatar %> alt="img" />
+          <h2><%= data.users[1].name %></h2>
+          <span><%= data.users[1].valueText %></span>
+        </div>
+        <div class="Pedestal__block">
+          <span class="font-heavy">2</span>
+        </div>
+      </div>
+      <div class="Pedestal">
+        <div class="Pedestal__info">
+          <img src=<%= "/img/" + data.users[3].avatar %> alt="img" />
+          <h2><%= data.users[3].name %></h2>
+          <span><%= data.users[3].valueText %></span>
+        </div>
+        <div class="Pedestal__block">
+          <span class="font-heavy">4</span>
+        </div>
+      </div>
     </main>
   </body>
 </html>
