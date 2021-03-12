@@ -1,25 +1,37 @@
 import express from "express";
 import path from "path";
-import ejs from "ejs";
-
-import data from "./data.js";
 
 const __dirname = path.resolve();
 const PORT = process.env.PORT ?? 8080;
 const app = express();
-app.use(express.static(__dirname + '/public'));
-
-const renderTemplate = (alias, data) => {
-  let filename = path.resolve(__dirname, "templates", "index.ejs");
-  return ejs.renderFile(filename, { alias, data });
-};
+app.use(express.static(__dirname + "/build"));
 
 app.get("/", (req, res) => {
-  // let theme = req.query.theme ?? "dark"
+  let themeColor = req.query.theme ?? "dark";
   let slide = (req.query.slide ?? 1) - 1;
-  renderTemplate(data[slide].alias, data[slide].data).then((html) => {
-    res.send(html);
-  });
+
+  let html = /* html */ `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <link rel="stylesheet" href="/stories.css">
+      </head>
+      <body class="theme_${themeColor}">
+        <script type="text/javascript" src="stories.js"></script>
+        <script type="text/javascript" src="data.js"></script>
+        <script>
+          let slide = ${slide};
+          let slideAlias = window.data[slide].alias;
+          let slideData = window.data[slide].data;
+          console.log(slideData);
+          console.log(slideData.users);
+          const body = document.querySelector('body');
+          body.innerHTML = window.renderTemplate(slideAlias, slideData);
+        </script>
+      </body>
+    </html>
+  `;
+  res.send(html);
 });
 
 app.listen(PORT, () => {

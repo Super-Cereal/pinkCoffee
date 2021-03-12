@@ -1,0 +1,14 @@
+@mixin media($property, $screens_values) {
+  @for $i from 1 through length($screens_values) {
+    $cur_screen_value: nth($screens_values, $i);
+    $screen: nth($cur_screen_value, 1);
+    $value: nth($cur_screen_value, 2);
+    @if $screen == "all" {
+      #{$property}: unquote(#{$value});
+    } @else {
+      @media screen and (max-width: $screen + "px") {
+        #{$property}: unquote(#{$value});
+      }
+    }
+  }
+}
