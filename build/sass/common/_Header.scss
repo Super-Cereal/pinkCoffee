@@ -1,0 +1,11 @@
+.HeaderWrapper {
+  margin-top: 20px;
+}
+.Header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &-Title {
+    margin-bottom: 8px;
+  }
+}

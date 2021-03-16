@@ -49,7 +49,7 @@ const LeadersPage = (data) => {
   const LeadersBody_Pedestal = (user, place, emoji) => /*html*/ `
   <section class="LeadersBody-Pedestal LeadersBody-Pedestal_${place}">
     <div class="LeadersBody-PersonWrapper">
-      <div class="Person">
+      <div class="Person Person_vertical">
         <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
           <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
           <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
@@ -106,7 +106,7 @@ const VotePage = (data) => {
   };
   const VoteBody_Person = (user, emoji, isSelected) => /* html */ `
     <div class="VoteBody-Person" data-isSelected="${isSelected}">
-      <div class="Person">
+      <div class="Person Person_vertical">
         <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
           <source srcset="/images/1x/${user.avatar}" media="(min-width: 700px)">
           <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
@@ -130,7 +130,9 @@ const ChartPage = (data) => {
               ${columns.reduce((prev, cur) => prev + cur)}
             </div>
             <div class="ChartBody-Users">
-              ${users.reduce((prev, cur) => prev + cur)}
+              ${users[0]}
+              <div class="Divider Divider_vertical"></div>
+              ${users[1]}
             </div>
           </div>
         </div>
@@ -165,20 +167,18 @@ const ChartPage = (data) => {
   const ChartBody_Users = (users) => {
     let persons = [];
     for (let i = 0; i < 2; i++) {
-      persons.push(ChartBody_User(users[i], i+1));
+      persons.push(ChartBody_User(users[i]));
     }
     return persons;
   };
-  const ChartBody_User = (user, number) => /* html */ `
-    <div class="Person_horizontal Person_horizontal_${number}">
-      <picture class="Person_horizontal-AvatarWrapper">
+  const ChartBody_User = (user) => /* html */ `
+    <div class="Person Person_horizontal">
+      <picture class="Person-AvatarWrapper">
         <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
-        <img class="Person_horizontal-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
+        <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
       </picture>
-      <div class="Person_horizontal-Info">
-        <span class="Person_horizontal-Name">${user.name}</span>
-        <span class="Person_horizontal-Value fontType_caption fontColor_gray">${user.valueText}</span>
-      </div>
+      <span class="Person-Name">${user.name}</span>
+      <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
     </div>
   `;
   return Header(data) + ChartBody(data);
@@ -193,6 +193,8 @@ const renderTemplate = (alias, data) => {
       return VotePage(data);
     case "chart":
       return ChartPage(data);
+    case "activity":
+      return ActivityPage(data);
     default:
       return `uncorrect alias: ${alias}`;
   }

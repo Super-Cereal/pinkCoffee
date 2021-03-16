@@ -1,0 +1,99 @@
+.LeadersBodyWrapper {
+  flex-grow: 1;
+  display: flex;
+}
+.LeadersBody {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  &-Pedestals {
+    display: flex;
+    align-items: flex-end;
+  }
+  &-Pedestal {
+    $offset: 16px;
+    &_1 {
+      z-index: 5;
+    }
+    &_2,
+    &_3 {
+      z-index: 3;
+      margin-right: -$offset;
+      margin-left: -$offset;
+    }
+    &_3 .LeadersBody,
+    &_5 .LeadersBody {
+      &-PersonWrapper,
+      &-PlaceWrapper {
+        padding-right: $offset;
+      }
+    }
+    &_2 .LeadersBody,
+    &_4 .LeadersBody {
+      &-PersonWrapper,
+      &-PlaceWrapper {
+        padding-left: $offset;
+      }
+    }
+  }
+  &-PersonWrapper {
+    margin-bottom: 16px;
+  }
+  &-Block {
+    text-align: center;
+    padding-top: 18px;
+    height: 68px;
+    width: 120px;
+    box-sizing: border-box;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) -2.22%,
+        rgba(0, 0, 0, 0.8) 100%
+      ),
+      radial-gradient(
+        149.08% 95.38% at 38.75% 71.48%,
+        #000000 0%,
+        #231900 0.01%,
+        #4d4d4d 100%
+      );
+    box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
+      inset 2px 2px 16px rgba(103, 103, 103, 0.6);
+    &_1 {
+      height: 108px;
+      background: radial-gradient(
+        91.67% 122.17% at 69.17% -11.17%,
+        #ffa300 0%,
+        #2d1c00 100%
+      );
+      box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.4),
+        inset 0px 6px 15px rgba(255, 162, 0, 0.4);
+    }
+    &_2,
+    &_3 {
+      height: 88px;
+    }
+  }
+}
+
+.theme_light {
+  .LeadersBody {
+    &-Block {
+      background: linear-gradient(
+        180deg,
+        rgba(244, 244, 244, 0.9) 0.82%,
+        #e9e9e9 100%,
+        rgba(234, 234, 234, 0) 100%
+      );
+      box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
+        inset 0px 0px 20px rgba(207, 207, 207, 0.5);
+      &_1 {
+        background: linear-gradient(180deg, #fff2d1 0.82%, #ffd66c 100%);
+        box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
+          inset 0px 0px 20px rgba(255, 176, 57, 0.8);
+      }
+    }
+  }
+}

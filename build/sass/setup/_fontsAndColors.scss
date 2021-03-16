@@ -18,6 +18,7 @@ $white: #fcfbf7;
 $gray_light: #bfbfbf;
 $black: #261c00;
 $gray: #918f8a;
+
 body {
   font-family: "Roboto", serif;
   font-style: normal;
@@ -29,13 +30,11 @@ body {
     color: $black;
   }
 }
-.fontColor {
-  &_gray {
-    color: $gray;
-  }
-  &_grayLight {
-    color: $gray_light;
-  }
+.fontColor_gray {
+  color: $gray;
+}
+.theme_light .fontColor_gray {
+  color: $gray_light;
 }
 .fontType {
   &_headline {

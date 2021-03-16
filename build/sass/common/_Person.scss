@@ -1,0 +1,65 @@
+.Person {
+  &-AvatarWrapper {
+    display: block;
+  }
+  &-Avatar {
+    border-radius: 50%;
+    filter: grayscale(1);
+  }
+  &-Name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  &-Value {
+    margin-top: 4px;
+  }
+
+  &_vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Person {
+      &-AvatarWrapper {
+        position: relative;
+        &::before {
+          display: block;
+          content: attr(data-emoji);
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          transform: translate(-50%, -100%);
+          font-size: 30px;
+          line-height: 32px;
+          z-index: 5;
+        }
+      }
+      &-Name {
+        max-width: 100px;
+        text-align: center;
+        margin-top: 2px;
+      }
+    }
+  }
+  &_horizontal {
+    display: grid;
+    grid-template-columns: 40px 182px;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 14px;
+    padding-left: 16px;
+    .Person {
+      &-AvatarWrapper {
+        grid-row: 1/3;
+      }
+      &-Avatar {
+        width: 40px;
+      }
+    }
+  }
+}
+.theme_light {
+  .Person {
+    &-Avatar {
+      filter: none;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.Divider {
+  background: $gray;
+  opacity: 0.3;
+  &_vertical {
+    height: 100%;
+    width: 2px;
+  }
+}
+
+.theme_light {
+  .Divider {
+    background: $gray_light;
+  }
+}
