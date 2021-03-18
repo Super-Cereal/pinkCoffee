@@ -148,7 +148,7 @@ const ChartPage = (data) => {
     let columns = [];
     for (let i = 0; i < 9; i++) {
       let v = values[i],
-        height = v.value / max.value * LINE_HEIGHT;
+        height = (v.value / max.value) * LINE_HEIGHT;
       columns.push(ChartBody_Column(v, height, v === max));
     }
     return columns;

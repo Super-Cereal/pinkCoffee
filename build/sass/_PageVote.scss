@@ -6,10 +6,11 @@
 .VoteBody {
   flex-grow: 1;
   display: flex;
-  max-width: 604px;
+  align-items: center;
   // justify-content: space-between;
   // решение не прошло из-за артефактов на автотестах
-  align-items: center;
+  justify-content: center;
+  max-width: 610px;
   &-PersonsGroup {
     .Person:nth-child(1) {
       margin-bottom: 4px;
