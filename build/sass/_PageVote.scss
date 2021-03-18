@@ -7,11 +7,20 @@
   flex-grow: 1;
   display: flex;
   max-width: 604px;
-  justify-content: space-between;
+  // justify-content: space-between;
+  // решение не прошло из-за артефактов на автотестах
   align-items: center;
   &-PersonsGroup {
     .Person:nth-child(1) {
       margin-bottom: 4px;
+    }
+    &:nth-child(2) {
+      margin-left: 32px;
+      margin-right: 31px;
+    }
+    &:nth-last-child(2) {
+      margin-left: 31px;
+      margin-right: 32px;
     }
   }
   &-Button {
