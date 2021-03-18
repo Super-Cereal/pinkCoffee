@@ -7,7 +7,7 @@
   flex-grow: 1;
   display: flex;
   max-width: 604px;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   &-PersonsGroup {
     .Person:nth-child(1) {
