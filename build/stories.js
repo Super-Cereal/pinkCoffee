@@ -49,7 +49,7 @@ const LeadersPage = (data) => {
   const LeadersBody_Pedestal = (user, place, emoji) => /*html*/ `
     <section class="LeadersBody-Pedestal LeadersBody-Pedestal_${place}">
       <div class="LeadersBody-PersonWrapper">
-        <div class="Person Person_vertical">
+        <div class="Person Person_ordinary">
           <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
             <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
             <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
@@ -105,14 +105,12 @@ const VotePage = (data) => {
     return persons;
   };
   const VoteBody_Person = (user, emoji, isSelected) => /* html */ `
-    <div class="VoteBody-Person" data-isSelected="${isSelected}">
-      <div class="Person Person_vertical">
-        <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
-          <source srcset="/images/1x/${user.avatar}" media="(min-width: 700px)">
-          <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
-        </picture>
-        <span class="Person-Name">${user.name}</span>
-      </div>
+    <div class="Person Person_ordinary Person_ordinary_hoverOn" data-isSelected="${isSelected}">
+      <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
+        <source srcset="/images/1x/${user.avatar}" media="(min-width: 700px)">
+        <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
+      </picture>
+      <span class="Person-Name">${user.name}</span>
     </div>
 `;
   return Header(data) + VoteBody(data);
