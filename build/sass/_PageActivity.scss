@@ -25,29 +25,22 @@
     width: 34px;
     height: 13px;
     position: relative;
-    &_min::after {
+    &::after {
       display: block;
       position: absolute;
       bottom: 0;
-      content: url("images/min-dark.svg");
+    }
+    &_min::after {
+      content: url("images/1x/min-dark.png");
     }
     &_mid::after {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      content: url("images/mid-dark.svg");
+      content: url("images/1x/mid-dark.png");
     }
     &_max::after {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      content: url("images/max-dark.svg");
+      content: url("images/1x/max-dark.png");
     }
     &_extra::after {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      content: url("images/extra-dark.svg");
+      content: url("images/1x/extra-dark.png");
     }
   }
   &-Intervals {
@@ -148,6 +141,84 @@
     &Value {
       display: inline-block;
       margin-top: 8px;
+    }
+  }
+}
+
+.theme_light {
+  .ActivityBody {
+    &-Turret {
+      &_min::after {
+        content: url("images/1x/min-light.png");
+      }
+      &_mid::after {
+        content: url("images/1x/mid-light.png");
+      }
+      &_max::after {
+        content: url("images/1x/max-light.png");
+      }
+      &_extra::after {
+        content: url("images/1x/extra-light.png");
+      }
+    }
+    &-Interval {
+      &Block {
+        &_sellSize div {
+          background: radial-gradient(
+            2408.25% 2730.55% at 89.06% 78.28%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0.8) 100%
+          );
+          box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.2),
+            inset 1px 1px 16px rgba(103, 103, 103, 0.2);
+          &::before,
+          &::after {
+            background: radial-gradient(
+              2408.25% 2730.55% at 89.06% 78.28%,
+              rgba(255, 255, 255, 0.8) 0%,
+              rgba(255, 255, 255, 0.8) 100%
+            );
+            box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.2),
+              inset 1px 1px 16px rgba(103, 103, 103, 0.2);
+          }
+        }
+        &_min div {
+          background: radial-gradient(
+            2408.25% 2730.55% at 89.06% 78.28%,
+            rgba(250, 250, 250, 0.6) 0%,
+            rgba(250, 250, 250, 0.6) 100%
+          );
+          box-shadow: inset -1px 0px 2px rgba(250, 250, 250, 0.2),
+            inset 1px 1px 16px rgba(106, 106, 106, 0.2);
+        }
+        &_mid div {
+          background: radial-gradient(
+            2408.25% 2730.55% at 89.06% 78.28%,
+            rgba(250, 250, 250, 0.8) 0%,
+            rgba(250, 250, 250, 0.8) 100%
+          );
+          box-shadow: inset -1px 0px 2px rgba(250, 250, 250, 0.2),
+            inset 1px 1px 16px rgba(106, 106, 106, 0.3);
+        }
+        &_max div {
+          background: radial-gradient(
+            68.1% 68.1% at 4.41% 31.9%,
+            #fff6dd 8.72%,
+            #fffefa 100%
+          );
+          box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
+            inset 0px 0px 20px rgba(255, 176, 57, 0.4);
+        }
+        &_extra div {
+          background: radial-gradient(
+            66.02% 86.49% at -16.18% 13.51%,
+            rgba(255, 186, 6, 0.85) 0%,
+            #fff2ad 100%
+          );
+          box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
+            inset 0px 0px 20px rgba(255, 176, 57, 0.4);
+        }
+      }
     }
   }
 }

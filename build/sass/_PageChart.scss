@@ -7,10 +7,8 @@
   display: flex;
   justify-content: center;
   &-InternalWrapper {
-    display: flex;
-    flex-direction: column;
     width: 552px;
-    margin: 32px auto 0;
+    margin: 34px auto 0;
   }
   &-Columns {
     display: flex;

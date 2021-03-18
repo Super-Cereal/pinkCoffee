@@ -177,8 +177,10 @@ const ChartPage = (data) => {
         <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
         <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
       </picture>
-      <span class="Person-Name">${user.name}</span>
-      <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
+      <div class="Person-Info">
+        <span class="Person-Name">${user.name}</span>
+        <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
+      </div>
     </div>
   `;
   return Header(data) + ChartBody(data);
