@@ -8,7 +8,7 @@
   flex-direction: column;
   &-Field {
     width: 425px;
-    margin: 18px auto 0;
+    margin: 20px auto 0;
     padding-top: 61px;
     box-sizing: border-box;
   }
@@ -97,6 +97,7 @@
         &::after {
           top: -4px;
           right: -4px;
+          transform: matrix(-1, 0, 0, 1, 0, 0);
         }
       }
       &_min div {

@@ -274,7 +274,7 @@ const ActivityPage = (data) => {
         <div></div>
       </div>
       <span class="ActivityBody-IntervalValue fontColor_gray">${
-        borders.firstBorder > 0 ? "1 - " + borders.firstBorder : "-"
+        borders.firstBorder > 0 ? "1 — " + borders.firstBorder : "—"
       }</span>
     </div>
     <div class="ActivityBody-Interval">
@@ -283,8 +283,8 @@ const ActivityPage = (data) => {
       </div>
       <span class="ActivityBody-IntervalValue fontColor_gray">${
         borders.secondBorder > 0
-          ? borders.firstBorder + 1 + " - " + borders.secondBorder
-          : "-"
+          ? borders.firstBorder + 1 + " — " + borders.secondBorder
+          : "—"
       }</span>
     </div>
     <div class="ActivityBody-Interval">
@@ -293,8 +293,8 @@ const ActivityPage = (data) => {
       </div>
       <span class="ActivityBody-IntervalValue fontColor_gray">${
         borders.lastBorder > 0
-          ? borders.secondBorder + 1 + " - " + borders.lastBorder
-          : "-"
+          ? borders.secondBorder + 1 + " — " + borders.lastBorder
+          : "—"
       }</span>
     </div>
   `;
