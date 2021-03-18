@@ -78,11 +78,11 @@
     }
     &-Button {
       &::before {
-        content: url("/images/button-hover-light.svg");
+        content: url("/images/button-light.svg");
       }
       &:hover::before,
       &_disabled::before {
-        content: url("images/button-light.svg");
+        content: url("images/button-hover-light.svg");
       }
     }
   }

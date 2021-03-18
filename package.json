@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index",
-    "serve": "nodemon index.js && gulp watch"
+    "serve": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
           let slideAlias = window.data[slide].alias;
           let slideData = window.data[slide].data;
           console.log(slideData);
-          console.log(slideData.users);
           const body = document.querySelector('body');
           body.innerHTML = window.renderTemplate(slideAlias, slideData);
         </script>

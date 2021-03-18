@@ -1,8 +1,8 @@
-const Header = (data) => /* html */ `
+const Header = ({ title, subtitle }) => /* html */ `
   <div class="HeaderWrapper">
     <header class="Header">
-      <h1 class="Header-Title fontType_headline">${data.title}</h1>
-      <span class="Header-Subtitle fontColor_gray">${data.subtitle}</span>
+      <h1 class="Header-Title fontType_headline">${title}</h1>
+      <span class="Header-Subtitle fontColor_gray">${subtitle}</span>
     </header>
   </div>
 `;
@@ -47,23 +47,23 @@ const LeadersPage = (data) => {
     return usersPedestals;
   };
   const LeadersBody_Pedestal = (user, place, emoji) => /*html*/ `
-  <section class="LeadersBody-Pedestal LeadersBody-Pedestal_${place}">
-    <div class="LeadersBody-PersonWrapper">
-      <div class="Person Person_vertical">
-        <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
-          <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
-          <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
-        </picture>
-        <span class="Person-Name">${user.name}</span>
-        <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
+    <section class="LeadersBody-Pedestal LeadersBody-Pedestal_${place}">
+      <div class="LeadersBody-PersonWrapper">
+        <div class="Person Person_vertical">
+          <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
+            <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
+            <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
+          </picture>
+          <span class="Person-Name">${user.name}</span>
+          <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
+        </div>
       </div>
-    </div>
-    <div class="LeadersBody-Block LeadersBody-Block_${place}">
-      <div class="LeadersBody-PlaceWrapper">
-        <span class="LeadersBody-Place fontType_headline">${place}</span>
+      <div class="LeadersBody-Block LeadersBody-Block_${place}">
+        <div class="LeadersBody-PlaceWrapper">
+          <span class="LeadersBody-Place fontType_headline">${place}</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 `;
   return Header(data) + LeadersBody(data);
 };
@@ -184,6 +184,121 @@ const ChartPage = (data) => {
   return Header(data) + ChartBody(data);
 };
 
+const ActivityPage = (data) => {
+  const ActivityBody = (data) => {
+    let { mon, tue, wed, thu, fri, sat, sun } = data.data;
+    let days = parseTwoHoursIntoOne([mon, tue, wed, thu, fri, sat, sun]);
+    let borders = findBorders(days);
+
+    let field = ActivityBody_Field(days, borders);
+    let intervals = ActivityBody_Intevals(borders, "2 часа");
+    return /* html */ `
+      <div class="ActivityBodyWrapper">
+        <div class="ActivityBody">
+          <div class="ActivityBody-Field">
+            ${field}
+          </div>
+          <div class="ActivityBody-Intervals">
+            ${intervals}
+          </div>
+        </div>
+      </div>
+  `;
+  };
+  const ActivityBody_Field = (days, borders) => {
+    let res = "";
+    for (i in days) {
+      res += ActivityBody_Field_Row(days[i], borders);
+    }
+    return res;
+  };
+  const ActivityBody_Field_Row = (day, borders) => {
+    let res = "";
+    for (j in day)
+      res += ActivityBody_Field_Turret(findHeight(day[j], borders));
+    return /*html*/ `<div class="ActivityBody-Row">${res}</div>`;
+  };
+  const ActivityBody_Field_Turret = (height) => /* html */ `
+    <div class="ActivityBody-Turret ActivityBody-Turret_${height}">
+    </div>
+  `;
+  const parseTwoHoursIntoOne = (days) => {
+    let horizontalDays = [[], [], [], [], [], [], []];
+    for (i in days) {
+      for (j in days[i]) {
+        if (j % 2 === 1) horizontalDays[i].push(days[i][j] + days[i][j - 1]);
+      }
+    }
+    return horizontalDays;
+  };
+  const findBorders = (days) => {
+    let max = -1;
+    for (i in days) {
+      max = Math.max(max, Math.max.apply(null, days[i]));
+    }
+    let borders = {
+      firstBorder: Math.floor(max / 3),
+      secondBorder: 2 * Math.floor(max / 3),
+      lastBorder: max,
+    };
+    // если максимум коммитов за неделею равен 2, то первая граница будет равна нулю,
+    // а вторую необходимо установить вручную
+    if (max === 2) borders.secondBorder = 1;
+    return borders;
+  };
+  const findHeight = (val, borders) => {
+    if (val === 0) return "min";
+    else if (1 <= val && val <= borders.firstBorder) return "mid";
+    else if (borders.firstBorder < val && val <= borders.secondBorder)
+      return "max";
+    else if (borders.secondBorder < val && val <= borders.lastBorder)
+      return "extra";
+  };
+  const ActivityBody_Intevals = (borders, sellSize) => /* html */ `
+    <div class="ActivityBody-Interval">
+      <div class="ActivityBody-IntervalBlock ActivityBody-IntervalBlock_sellSize">
+        <div></div>
+      </div>
+      <span class="ActivityBody-IntervalValue fontColor_gray">${sellSize}</span>
+    </div>
+    <div class="ActivityBody-Interval">
+      <div class="ActivityBody-IntervalBlock ActivityBody-IntervalBlock_min">
+        <div></div>
+      </div>
+      <span class="ActivityBody-IntervalValue fontColor_gray">0</span>
+    </div>
+    <div class="ActivityBody-Interval">
+      <div class="ActivityBody-IntervalBlock ActivityBody-IntervalBlock_mid">
+        <div></div>
+      </div>
+      <span class="ActivityBody-IntervalValue fontColor_gray">${
+        borders.firstBorder > 0 ? "1 - " + borders.firstBorder : "-"
+      }</span>
+    </div>
+    <div class="ActivityBody-Interval">
+      <div class="ActivityBody-IntervalBlock ActivityBody-IntervalBlock_max">
+        <div></div>
+      </div>
+      <span class="ActivityBody-IntervalValue fontColor_gray">${
+        borders.secondBorder > 0
+          ? borders.firstBorder + 1 + " - " + borders.secondBorder
+          : "-"
+      }</span>
+    </div>
+    <div class="ActivityBody-Interval">
+      <div class="ActivityBody-IntervalBlock ActivityBody-IntervalBlock_extra">
+        <div></div>
+      </div>
+      <span class="ActivityBody-IntervalValue fontColor_gray">${
+        borders.lastBorder > 0
+          ? borders.secondBorder + 1 + " - " + borders.lastBorder
+          : "-"
+      }</span>
+    </div>
+  `;
+
+  return Header(data) + ActivityBody(data);
+};
 const renderTemplate = (alias, data) => {
   // возвращает содержимое для body по полученному alias & data
   switch (alias) {

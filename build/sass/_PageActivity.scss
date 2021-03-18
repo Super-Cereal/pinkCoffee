@@ -1,0 +1,153 @@
+.ActivityBodyWrapper {
+  flex-grow: 1;
+  display: flex;
+}
+.ActivityBody {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  &-Field {
+    width: 425px;
+    margin: 18px auto 0;
+    padding-top: 61px;
+    box-sizing: border-box;
+  }
+  &-Row {
+    display: flex;
+    &:nth-child(odd) {
+      justify-content: flex-start;
+    }
+    &:nth-child(even) {
+      justify-content: flex-end;
+    }
+  }
+  &-Turret {
+    width: 34px;
+    height: 13px;
+    position: relative;
+    &_min::after {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      content: url("images/min-dark.svg");
+    }
+    &_mid::after {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      content: url("images/mid-dark.svg");
+    }
+    &_max::after {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      content: url("images/max-dark.svg");
+    }
+    &_extra::after {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      content: url("images/extra-dark.svg");
+    }
+  }
+  &-Intervals {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    gap: 8px;
+    margin: 32px auto 0;
+  }
+  &-Interval {
+    width: 60px;
+    text-align: center;
+    &Block {
+      height: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div {
+        border-radius: 2px;
+        height: 100%;
+        width: 100%;
+      }
+      &_sellSize div {
+        position: relative;
+        border-radius: 0;
+        width: 52px;
+        height: 4px;
+        background: radial-gradient(
+          51.52% 129.57% at 48.48% 50%,
+          rgba(64, 59, 54, 0) 0%,
+          rgba(19, 18, 17, 0.5) 100%
+        );
+        box-shadow: inset 0px -1px 2px rgba(255, 255, 255, 0.25),
+          inset 3px 1px 16px rgba(112, 102, 94, 0.3);
+        &::before,
+        &::after {
+          position: absolute;
+          display: block;
+          content: "";
+          width: 4px;
+          height: 12px;
+          background: radial-gradient(
+            150% 252.96% at 150% 50%,
+            rgba(64, 59, 54, 0.65) 0%,
+            rgba(0, 0, 0, 0.65) 100%
+          );
+          box-shadow: inset 0px -1px 2px rgba(255, 255, 255, 0.25),
+            inset 3px 1px 16px rgba(112, 102, 94, 0.3);
+          border-radius: 2px;
+        }
+        &::before {
+          top: -4px;
+          left: -4px;
+        }
+        &::after {
+          top: -4px;
+          right: -4px;
+        }
+      }
+      &_min div {
+        background: radial-gradient(
+          3906.1% 3815.36% at 89.06% 78.28%,
+          rgba(19, 17, 16, 0.65) 0%,
+          rgba(0, 0, 0, 0.65) 100%
+        );
+        box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.2),
+          inset 1px 1px 16px rgba(112, 102, 94, 0.2);
+      }
+      &_mid div {
+        background: radial-gradient(
+          5752.25% 5190.32% at 74.43% 60.32%,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(35, 22, 0, 0.9) 0.01%,
+          rgba(112, 92, 94, 0.9) 100%
+        );
+        box-shadow: inset -1px 0px 1px rgba(255, 255, 255, 0.2),
+          inset 2px 2px 10px rgba(93, 116, 141, 0.6);
+      }
+      &_max div {
+        background: radial-gradient(
+          5528.36% 3005.63% at 74.43% 75.84%,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(33, 22, 2, 0.9) 0.01%,
+          rgba(172, 113, 9, 0.9) 100%
+        );
+        box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
+          inset 2px 2px 10px rgba(242, 159, 13, 0.2);
+      }
+      &_extra div {
+        background: radial-gradient(
+          2258.03% 620.37% at 83.33% 88.95%,
+          #201502 0%,
+          #c7830a 100%
+        );
+        box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
+          inset 2px 2px 10px rgba(242, 159, 13, 0.9);
+      }
+    }
+    &Value {
+      display: inline-block;
+      margin-top: 8px;
+    }
+  }
+}
