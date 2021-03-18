@@ -1,10 +1,12 @@
 .VoteBodyWrapper {
   flex-grow: 1;
   display: flex;
+  justify-content: center;
 }
 .VoteBody {
   flex-grow: 1;
   display: flex;
+  max-width: 604px;
   justify-content: space-around;
   align-items: center;
   &-Person {
@@ -39,7 +41,7 @@
   }
   &-Button {
     &:nth-child(1) {
-      margin-bottom: 66px;
+      margin-bottom: 56px;
     }
     &::before {
       display: block;
