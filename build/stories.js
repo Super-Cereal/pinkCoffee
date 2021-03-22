@@ -24,9 +24,7 @@ const LeadersPage = (data) => {
       </div>
 `;
   };
-  const LeadersBody_Pedestals = (data) => {
-    let { users, emoji, selectedUserId } = data;
-
+  const LeadersBody_Pedestals = ({ users, emoji, selectedUserId }) => {
     let usersPedestals = [];
     for (let i = 0; i < 5; i++) {
       let curUserEmoji = i === 0 ? emoji : users[i].id === selectedUserId ? "👍" : "";
@@ -91,8 +89,7 @@ const VotePage = (data) => {
       </div>
 `;
   };
-  const VoteBody_Persons = (data) => {
-    let { users, selectedUserId } = data;
+  const VoteBody_Persons = ({ users, selectedUserId }) => {
     let persons = [];
     for (let i = 0; i < 8; i++) {
       let user = users[i];
@@ -186,57 +183,48 @@ const ChartPage = (data) => {
 };
 
 const ActivityPage = (data) => {
-  const parseTwoHoursIntoOne = (days) => {
-    let horizontalDays = [[], [], [], [], [], [], []];
-    for (i in days) {
-      for (j in days[i]) {
-        if (j % 2 === 1) horizontalDays[i].push(days[i][j] + days[i][j - 1]);
+  const ActivityBodyContainer = ({ data }) => {
+    function parseTwoHoursIntoOne(days) {
+      let horizontalDays = [[], [], [], [], [], [], []];
+      for (i in days) {
+        for (j in days[i]) {
+          if (j % 2 === 1) horizontalDays[i].push(days[i][j] + days[i][j - 1]);
+        }
       }
+      return horizontalDays;
     }
-    return horizontalDays;
-  };
-  const findBorders = (days) => {
-    let max = -1;
-    for (i in days) {
-      max = Math.max(max, Math.max.apply(null, days[i]));
+    function findBorders(days) {
+      let max = -1;
+      for (i in days) {
+        max = Math.max(max, Math.max.apply(null, days[i]));
+      }
+      let borders = {
+        firstBorder: Math.floor(max / 3),
+        secondBorder: 2 * Math.floor(max / 3),
+        lastBorder: max,
+      };
+      // если максимум коммитов за неделею равен 2, то первая граница будет равна нулю,
+      // а вторую необходимо установить вручную
+      if (max === 2) borders.secondBorder = 1;
+      return borders;
     }
-    let borders = {
-      firstBorder: Math.floor(max / 3),
-      secondBorder: 2 * Math.floor(max / 3),
-      lastBorder: max,
-    };
-    // если максимум коммитов за неделею равен 2, то первая граница будет равна нулю,
-    // а вторую необходимо установить вручную
-    if (max === 2) borders.secondBorder = 1;
-    return borders;
-  };
-  const findHeight = (val, borders) => {
-    if (val === 0) return "min";
-    else if (1 <= val && val <= borders.firstBorder) return "mid";
-    else if (borders.firstBorder < val && val <= borders.secondBorder) return "max";
-    else if (borders.secondBorder < val && val <= borders.lastBorder) return "extra";
-  };
-
-  const ActivityBody = (data) => {
-    let { mon, tue, wed, thu, fri, sat, sun } = data.data;
+    let { mon, tue, wed, thu, fri, sat, sun } = data;
     let days = parseTwoHoursIntoOne([mon, tue, wed, thu, fri, sat, sun]);
     let borders = findBorders(days);
-
-    let field = ActivityBody_Field(days, borders);
-    let intervals = ActivityBody_Intevals(borders, "2 часа");
-    return /* html */ `
+    return ActivityBody(days, borders);
+  };
+  const ActivityBody = (days, borders) => /* html */ `
       <div class="ActivityBodyWrapper">
         <div class="ActivityBody">
           <div class="ActivityBody-Field">
-            ${field}
+            ${ActivityBody_Field(days, borders)}
           </div>
           <div class="ActivityBody-Intervals">
-            ${intervals}
+            ${ActivityBody_Intevals(borders, "2 часа")}
           </div>
         </div>
       </div>
   `;
-  };
   const ActivityBody_Field = (days, borders) => {
     let res = "";
     for (i in days) {
@@ -245,6 +233,12 @@ const ActivityPage = (data) => {
     return res;
   };
   const ActivityBody_Field_Row = (day, borders) => {
+    function findHeight(val, borders) {
+      if (val === 0) return "min";
+      else if (1 <= val && val <= borders.firstBorder) return "mid";
+      else if (borders.firstBorder < val && val <= borders.secondBorder) return "max";
+      else if (borders.secondBorder < val && val <= borders.lastBorder) return "extra";
+    }
     let res = "";
     for (j in day) res += ActivityBody_Field_Turret(findHeight(day[j], borders));
     return /*html*/ `<div class="ActivityBody-Row">${res}</div>`;
@@ -274,7 +268,53 @@ const ActivityPage = (data) => {
     </div>
   `;
 
-  return Header(data) + ActivityBody(data);
+  return Header(data) + ActivityBodyContainer(data);
+};
+
+const DiagramPage = (data) => {
+  const DiagramBody = (data) => /* html */ `
+    <div class="DiagramBodyWrapper">
+      <div class="DiagramBody">
+        <div class="DiagramBody-InternalWrapper">
+          ${DiagramBody_Diagram(data.totalText, data.differenceText)}
+          ${DiagramBody_Legend(data.categories)}
+        </div>
+      </div>
+    </div>
+  `;
+  const DiagramBody_Diagram = (totalText, differenceText) => /* html */ `
+    <div class="DiagramBody-Diagram Diagram">
+      <img class="Diagram-Img" width="240px" src="/images/circularDiagram-dark.png" alt="circularDiagram" />
+      <div class="Diagram-Text">
+        <span class="fontType_subhead">${totalText}</span>
+        <span class="fontColor_gray">${differenceText}</span>
+      </div>
+    </div>
+  `;
+  const DiagramBody_Legend = (categories) => {
+    let res = "";
+    for (i in categories) {
+      if (i != 0) res += /* html */ `<div class="Divider Divider_horizontal"></div>`;
+      res += DiagramBody_LegendLine(categories[i], i);
+    }
+    return /* html */ `<div class="DiagramBody-Legend Legend">${res}</div>`;
+  };
+  const DiagramBody_LegendLine = (category, index) => /* html */ `
+    <div class="LegendLine">
+      <div class="LegendLine-LeftBlock">
+        <span class="LegendLine-Title LegendLine-Title_${index}">${category.title}</span>
+      </div>
+      <div class="LegendLine-RightBlock">
+        <span class="LegendLine-DiffText fontColor_gray">
+          ${category.differenceText.split(" ")[0]}
+        </span>
+        <span class="LegendLine-TotalText fontColor_gray">
+          ${category.valueText.split(" ")[0]}
+        </span>        
+      </div>
+    </div>
+  `;
+  return Header(data) + DiagramBody(data);
 };
 const renderTemplate = (alias, data) => {
   // возвращает содержимое для body по полученному alias & data
@@ -287,6 +327,8 @@ const renderTemplate = (alias, data) => {
       return ChartPage(data);
     case "activity":
       return ActivityPage(data);
+    case "diagram":
+      return DiagramPage(data);
     default:
       return `uncorrect alias: ${alias}`;
   }

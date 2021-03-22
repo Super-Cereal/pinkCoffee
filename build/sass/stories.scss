@@ -19,11 +19,14 @@ BlockName-ElemName_modName_modVal
 @import "common/_Person.scss";
 @import "common/_Header.scss";
 @import "common/_Divider.scss";
+@import "common/_Diagram.scss";
+@import "common/_Legend.scss";
 
 @import "_PageLeaders.scss";
 @import "_PageVote.scss";
 @import "_PageChart.scss";
 @import "_PageActivity.scss";
+@import "_PageDiagram.scss";
 
 * {
   margin: 0;

@@ -1,0 +1,16 @@
+.DiagramBodyWrapper {
+  flex-grow: 1;
+}
+
+.DiagramBody {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  &-InternalWrapper {
+    width: 584px;
+    margin-top: 29px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
