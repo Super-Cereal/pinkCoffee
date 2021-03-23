@@ -9,3 +9,13 @@
     margin-bottom: 8px;
   }
 }
+
+@media all and (orientation: portrait) {
+  .HeaderWrapper {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  .Header {
+    display: block !important;
+  }
+}

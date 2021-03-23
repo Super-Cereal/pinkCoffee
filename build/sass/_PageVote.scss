@@ -57,3 +57,20 @@
     }
   }
 }
+
+@media all and (orientation: portrait) {
+  .VoteBodyWrapper_landscape {
+    display: none
+  }
+  .VoteBody {
+    max-width: 328px;
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+
+@media all and (orientation: landscape) {
+  .VoteBodyWrapper_portrait {
+    display: none
+  }
+}

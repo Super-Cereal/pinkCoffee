@@ -86,5 +86,23 @@
 }
 
 @media (orientation: portrait) {
-  
+  .LeadersBody {
+    &-Pedestal {
+      &_4,
+      &_5 {
+        display: none;
+      }
+    }
+    &-Block {
+      &_1 {
+        height: 325px;
+      }
+      &_2 {
+        height: 275px;
+      }
+      &_3 {
+        height: 225px;
+      }
+    }
+  }
 }

@@ -6,7 +6,6 @@ const Header = ({ title, subtitle }) => /* html */ `
     </header>
   </div>
 `;
-
 const LeadersPage = (data) => {
   const LeadersBody = (data) => {
     let usersPedestals = LeadersBody_Pedestals(data);
@@ -40,6 +39,9 @@ const LeadersPage = (data) => {
           "👍"
         );
       }
+      if (selectedUserId > 3) {
+
+      }
     }
     return usersPedestals;
   };
@@ -64,12 +66,11 @@ const LeadersPage = (data) => {
 `;
   return Header(data) + LeadersBody(data);
 };
-
 const VotePage = (data) => {
   const VoteBody = (data) => {
     let persons = VoteBody_Persons(data);
     return /* html */ `
-      <div class="VoteBodyWrapper">
+      <div class="VoteBodyWrapper VoteBodyWrapper_landscape">
         <div class="VoteBody">
           ${persons[0]}
           <div class="VoteBody-PersonsGroup">
@@ -84,7 +85,27 @@ const VotePage = (data) => {
            ${persons[2]}
            ${persons[5]}
           </div>
-          ${persons[3]}
+          ${persons[3]} 
+        </div>
+      </div>
+      <div class="VoteBodyWrapper VoteBodyWrapper_portrait">
+        <div class="VoteBody">
+          <div class="VoteBody-LeftGroup">
+            ${persons[0]}
+            ${persons[3]}
+            ${persons[6]}
+          </div>
+          <div class="VoteBody-MiddleGroup">
+            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled"></div>
+            ${persons[1]}
+            ${persons[4]}            
+            <div class="VoteBody-Button VoteBody-Button_bottom"></div>
+          </div>
+          <div class="VoteBody-RightGroup">
+            ${persons[2]}
+            ${persons[5]}
+            ${persons[7]}
+          </div>
         </div>
       </div>
 `;
@@ -111,7 +132,6 @@ const VotePage = (data) => {
 `;
   return Header(data) + VoteBody(data);
 };
-
 const ChartPage = (data) => {
   const ChartBody = (data) => {
     let columns = ChartBody_Columns(data.values);
@@ -181,7 +201,6 @@ const ChartPage = (data) => {
   `;
   return Header(data) + ChartBody(data);
 };
-
 const ActivityPage = (data) => {
   const ActivityBodyContainer = ({ data }) => {
     function parseTwoHoursIntoOne(days) {
@@ -270,7 +289,6 @@ const ActivityPage = (data) => {
 
   return Header(data) + ActivityBodyContainer(data);
 };
-
 const DiagramPage = (data) => {
   const DiagramBody = (data) => /* html */ `
     <div class="DiagramBodyWrapper">
@@ -284,12 +302,100 @@ const DiagramPage = (data) => {
   `;
   const DiagramBody_Diagram = (totalText, differenceText) => /* html */ `
     <div class="DiagramBody-Diagram Diagram">
-      <img class="Diagram-Img" width="240px" src="/images/circularDiagram-dark.png" alt="circularDiagram" />
+      ${DiagramBody_Diagram_d3()}
       <div class="Diagram-Text">
         <span class="fontType_subhead">${totalText}</span>
         <span class="fontColor_gray">${differenceText}</span>
       </div>
     </div>
+  `;
+  const DiagramBody_Diagram_d3 = () => /*html*/ `
+    ${DiagramBody_Diagram_d3_defs()}
+  `;
+  const DiagramBody_Diagram_d3_defs = () => /* html */ `
+  <svg class="Diagram-D3">
+  <defs>
+  <radialGradient id="paint00_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(120)">
+    <stop offset="0.8125" stop-color="#FFB800" stop-opacity="0.4"/>
+    <stop offset="1" stop-color="#FFEF99" stop-opacity="0.2"/>
+  </radialGradient>
+  <radialGradient id="paint01_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(120)">
+        <stop offset="0.828125" stop-color="#BFBFBF" stop-opacity="0.69"/>
+        <stop offset="0.921875" stop-color="#E4E4E4" stop-opacity="0.2"/>
+  </radialGradient>
+  <radialGradient id="paint02_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(120)">
+        <stop offset="0.828125" stop-color="#A6A6A6" stop-opacity="0.69"/>
+        <stop offset="0.921875" stop-color="#CBCBCB" stop-opacity="0.2"/>
+  </radialGradient>
+  <radialGradient id="paint03_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(120)">
+        <stop offset="0.8125" stop-color="#FFB800" stop-opacity="0.7"/>
+        <stop offset="1" stop-color="#FFEF99" stop-opacity="0.4"/>
+  </radialGradient>
+  <filter id="filter00_ii" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset/>
+    <feGaussianBlur stdDeviation="10"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.69 0 0 0 0 0.225 0 0 0 0.4 0"/>
+    <feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dx="-1" dy="1"/>
+    <feGaussianBlur stdDeviation="0.5"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
+    <feBlend mode="normal" in2="effect1_innerShadow" result="effect2_innerShadow"/>
+  </filter >
+  <filter id="filter01_ii" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset/>
+    <feGaussianBlur stdDeviation="10"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.5125 0 0 0 0 0.5125 0 0 0 0 0.5125 0 0 0 0.6 0"/>
+    <feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dx="-1" dy="1"/>
+    <feGaussianBlur stdDeviation="0.5"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
+    <feBlend mode="normal" in2="effect1_innerShadow" result="effect2_innerShadow"/>
+  </filter >
+  <filter id="filter02_ii" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset/>
+    <feGaussianBlur stdDeviation="10"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.4125 0 0 0 0 0.4125 0 0 0 0 0.4125 0 0 0 0.2 0"/>
+    <feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dx="-1" dy="1"/>
+    <feGaussianBlur stdDeviation="0.5"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
+    <feBlend mode="normal" in2="effect1_innerShadow" result="effect2_innerShadow"/>
+  </filter >
+  <filter id="filter03_ii" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset/>
+    <feGaussianBlur stdDeviation="10"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.69 0 0 0 0 0.225 0 0 0 0.9 0"/>
+    <feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+    <feOffset dx="-1" dy="1"/>
+    <feGaussianBlur stdDeviation="0.5"/>
+    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
+    <feBlend mode="normal" in2="effect1_innerShadow" result="effect2_innerShadow"/>
+  </filter >
+</defs></svg>
   `;
   const DiagramBody_Legend = (categories) => {
     let res = "";
@@ -300,19 +406,19 @@ const DiagramPage = (data) => {
     return /* html */ `<div class="DiagramBody-Legend Legend">${res}</div>`;
   };
   const DiagramBody_LegendLine = (category, index) => /* html */ `
-    <div class="LegendLine">
-      <div class="LegendLine-LeftBlock">
-        <span class="LegendLine-Title LegendLine-Title_${index}">${category.title}</span>
+      <div class="LegendLine">
+        <div class="LegendLine-LeftBlock">
+          <span class="LegendLine-Title LegendLine-Title_${index}">${category.title}</span>
+        </div>
+        <div class="LegendLine-RightBlock">
+          <span class="LegendLine-DiffText fontColor_gray">
+            ${category.differenceText.split(" ")[0]}
+          </span>
+          <span class="LegendLine-TotalText fontColor_gray">
+            ${category.valueText.split(" ")[0]}
+          </span>        
+        </div>
       </div>
-      <div class="LegendLine-RightBlock">
-        <span class="LegendLine-DiffText fontColor_gray">
-          ${category.differenceText.split(" ")[0]}
-        </span>
-        <span class="LegendLine-TotalText fontColor_gray">
-          ${category.valueText.split(" ")[0]}
-        </span>        
-      </div>
-    </div>
   `;
   return Header(data) + DiagramBody(data);
 };
