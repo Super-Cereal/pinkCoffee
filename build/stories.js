@@ -355,9 +355,16 @@ const DiagramPage = (data) => {
   // `;
   const DiagramBody_Diagram = (totalText, differenceText) => /* html */ `
     <div class="DiagramBody-Diagram Diagram">
-      <div class="Diagram-Text">
+      <div class="Diagram-Img">
+        <img src="/images/circularDiagram-dark.png"/>
+      </div>
+      <div class="Diagram-Text Diagram-Text_landscape">
         <span class="fontType_subhead">${totalText}</span>
         <span class="fontColor_gray">${differenceText}</span>
+      </div>
+      <div class="Diagram-Text Diagram-Text_portrait">
+        <span class="fontType_headline">${totalText}</span>
+        <span class="fontType_subhead fontColor_gray">${differenceText}</span>
       </div>
     </div>
   `;
