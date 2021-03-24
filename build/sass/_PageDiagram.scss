@@ -1,22 +1,14 @@
-.DiagramBodyWrapper {
-  flex-grow: 1;
-}
-
 .DiagramBody {
   flex-grow: 1;
   display: flex;
+  width: 100%;
   justify-content: center;
-  &-InternalWrapper {
-    width: 584px;
-    margin-top: 29px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  align-items: center;
 }
 
 .Legend {
-  width: 328px;
+  min-width: 304px;
+  margin-left: 40px;
 }
 
 .LegendLine {
@@ -77,7 +69,7 @@
 }
 
 .Diagram {
-  width: 240px;
+  min-width: 240px;
   height: 240px;
   position: relative;
   &-Img img {
@@ -141,15 +133,16 @@
 }
 
 @media (orientation: portrait) {
-  .DiagramBody-InternalWrapper {
+  .DiagramBody {
     flex-direction: column;
+    justify-content: center;
   }
   .Diagram {
-    width: 328px;
-    height: 328px;
+    min-width: 328px;
+    min-height: 328px;
     &-Img img {
-      width: 328px;
-      height: 328px;
+      min-width: 328px;
+      min-height: 328px;
     }
     &-Text {
       &_landscape {
@@ -161,7 +154,9 @@
     }
   }
   .Legend {
+    min-width: 328px;
     margin-top: 16px;
+    margin-left: 0;
   }
 }
 

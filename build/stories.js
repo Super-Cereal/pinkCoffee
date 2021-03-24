@@ -10,7 +10,7 @@ const LeadersPage = (data) => {
   const LeadersBody = (data) => {
     let usersPedestals = LeadersBody_Pedestals(data);
     return /* html */ `
-      <div class="LeadersBodyWrapper">
+      <div class="PageBodyWrapper">
         <div class="LeadersBody">
           <div class="LeadersBody-Pedestals">
             ${usersPedestals[4]}
@@ -69,7 +69,7 @@ const VotePage = (data) => {
   const VoteBody = (data) => {
     let persons = VoteBody_Persons(data);
     return /* html */ `
-      <div class="VoteBodyWrapper">
+      <div class="PageBodyWrapper">
         <div class="VoteBody VoteBody_landscape">
           ${persons[0]}
           <div class="VoteBody-PersonsGroup">
@@ -137,7 +137,7 @@ const ChartPage = (data) => {
     let columns = ChartBody_Columns(data.values);
     let users = ChartBody_Users(data.users);
     return /* html */ `
-      <div class="ChartBodyWrapper">
+      <div class="PageBodyWrapper">
         <div class="ChartBody">
           <div class="ChartBody-InternalWrapper">
             <div class="ChartBody-Columns">
@@ -233,7 +233,7 @@ const ActivityPage = (data) => {
     return ActivityBody(days, borders);
   };
   const ActivityBody = (days, borders) => /* html */ `
-      <div class="ActivityBodyWrapper">
+      <div class="PageBodyWrapper">
         <div class="ActivityBody">
           <div class="ActivityBody-Field">
             ${ActivityBody_Field(days, borders)}
@@ -291,12 +291,10 @@ const ActivityPage = (data) => {
 };
 const DiagramPage = (data) => {
   const DiagramBody = (data) => /* html */ `
-    <div class="DiagramBodyWrapper">
+    <div class="PageBodyWrapper">
       <div class="DiagramBody">
-        <div class="DiagramBody-InternalWrapper">
-          ${DiagramBody_Diagram(data.totalText, data.differenceText)}
-          ${DiagramBody_Legend(data.categories)}
-        </div>
+        ${DiagramBody_Diagram(data.totalText, data.differenceText)}
+        ${DiagramBody_Legend(data.categories)}
       </div>
     </div>
   `;
@@ -320,7 +318,7 @@ const DiagramPage = (data) => {
   //       return whites[w];
   //     }
 
-  //     let opacities = ["0.8", "0.6", "0.25", "0.5"], 
+  //     let opacities = ["0.8", "0.6", "0.25", "0.5"],
   //       o = -1;
   //     const opacity_white = () => {
   //       o += 1;
@@ -343,7 +341,7 @@ const DiagramPage = (data) => {
   //       .data(pie(dataD))
   //       .enter().append("g")
   //       .attr("filter", d => filters_white())
-      
+
   //     arcs.append("path")
   //       .attr("d", arc)
   //       .attr("fill", d => color_white())

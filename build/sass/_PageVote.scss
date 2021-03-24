@@ -1,29 +1,23 @@
-.VoteBodyWrapper {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-}
 .VoteBody {
   flex-grow: 1;
+  min-width: 607px;
   display: flex;
   align-items: center;
   // justify-content: space-between;
   // решение не прошло из-за артефактов на автотестах
-  justify-content: space-between;
-  max-width: 607px;
   &-PersonsGroup {
     display: grid;
     row-gap: 4px;
     // следующие два блока добавлены из-за ошибки в автотестах,
     // лучше заменить на justify-content: space-between; для .VoteBody
-    // &:nth-child(2) {
-    //   margin-left: 32px;
-    //   margin-right: 31px;
-    // }
-    // &:nth-last-child(2) {
-    //   margin-left: 31px;
-    //   margin-right: 32px;
-    // }
+    &:nth-child(2) {
+      margin-left: 32px;
+      margin-right: 31px;
+    }
+    &:nth-last-child(2) {
+      margin-left: 31px;
+      margin-right: 32px;
+    }
   }
   &-ButtonsGroup {
     display: grid;
@@ -66,9 +60,14 @@
     display: none;
   }
   .VoteBody {
-    max-width: 328px;
+    min-width: 328px;
+    justify-content: space-between;
     &-PersonsGroup {
       row-gap: 25px;
+      &:nth-child(2),
+      &:nth-last-child(2) {
+        margin: 0;
+      }
     }
     &-ButtonsGroup {
       row-gap: 23px;

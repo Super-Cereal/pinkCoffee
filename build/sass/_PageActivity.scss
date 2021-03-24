@@ -1,14 +1,12 @@
-.ActivityBodyWrapper {
-  flex-grow: 1;
-  display: flex;
-}
 .ActivityBody {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 425px;
   &-Field {
-    width: 425px;
-    margin: 22px auto 0;
+    width: 100%;
     padding-top: 61px;
     box-sizing: border-box;
   }
@@ -47,7 +45,7 @@
     display: grid;
     grid-template-columns: repeat(5, 60px);
     gap: 8px;
-    margin: 28px auto 0;
+    margin-top: 28px;
   }
   &-Interval {
     width: 60px;
@@ -130,11 +128,7 @@
           inset 2px 2px 10px rgba(242, 159, 13, 0.2);
       }
       &_extra div {
-        background: radial-gradient(
-          2258.03% 620.37% at 83.33% 88.95%,
-          #201502 0%,
-          #c7830a 100%
-        );
+        background: radial-gradient(2258.03% 620.37% at 83.33% 88.95%, #201502 0%, #c7830a 100%);
         box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
           inset 2px 2px 10px rgba(242, 159, 13, 0.9);
       }
@@ -202,11 +196,7 @@
             inset 1px 1px 16px rgba(106, 106, 106, 0.3);
         }
         &_max div {
-          background: radial-gradient(
-            68.1% 68.1% at 4.41% 31.9%,
-            #fff6dd 8.72%,
-            #fffefa 100%
-          );
+          background: radial-gradient(68.1% 68.1% at 4.41% 31.9%, #fff6dd 8.72%, #fffefa 100%);
           box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
             inset 0px 0px 20px rgba(255, 176, 57, 0.4);
         }

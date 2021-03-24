@@ -1,14 +1,10 @@
-.ChartBodyWrapper {
-  flex-grow: 1;
-  display: flex;
-}
 .ChartBody {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
   &-InternalWrapper {
     width: 552px;
-    margin-top: 30px;
   }
   &-Columns {
     display: flex;
