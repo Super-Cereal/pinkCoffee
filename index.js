@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
     <html>
       <head>
         <link rel="stylesheet" href="/stories.css">
+        <meta name="viewport" content="width=device-width">
       </head>
       <body class="theme_${themeColor}">
         <script type="text/javascript" src="data.js"></script>

@@ -9,30 +9,33 @@
   align-items: center;
   // justify-content: space-between;
   // решение не прошло из-за артефактов на автотестах
-  justify-content: center;
-  max-width: 610px;
+  justify-content: space-between;
+  max-width: 606px;
   &-PersonsGroup {
-    .Person:nth-child(1) {
-      margin-bottom: 4px;
-    }
-    &:nth-child(2) {
-      margin-left: 32px;
-      margin-right: 31px;
-    }
-    &:nth-last-child(2) {
-      margin-left: 31px;
-      margin-right: 32px;
-    }
+    display: grid;
+    row-gap: 4px;
+    // следующие два блока добавлены из-за ошибки в автотестах,
+    // лучше заменить на justify-content: space-between; для .VoteBody
+    // &:nth-child(2) {
+    //   margin-left: 32px;
+    //   margin-right: 31px;
+    // }
+    // &:nth-last-child(2) {
+    //   margin-left: 31px;
+    //   margin-right: 32px;
+    // }
+  }
+  &-ButtonsGroup {
+    display: grid;
+    row-gap: 56px;
   }
   &-Button {
-    &:nth-child(1) {
-      margin-bottom: 56px;
-    }
     &::before {
       display: block;
       content: url("/images/button-dark.svg");
       width: 64px;
       height: 64px;
+      margin: 0 auto;
     }
     &_top::before {
       transform: rotate(180deg);
@@ -58,19 +61,26 @@
   }
 }
 
-@media all and (orientation: portrait) {
-  .VoteBodyWrapper_landscape {
-    display: none
+@media (orientation: portrait) {
+  .VoteBody_landscape {
+    display: none;
   }
   .VoteBody {
     max-width: 328px;
-    margin-left: 24px;
-    margin-right: 24px;
+    &-PersonsGroup {
+      row-gap: 25px;
+    }
+    &-ButtonsGroup {
+      row-gap: 23px;
+      .PersonsGroup {
+        row-gap: 22px;
+      }
+    }
   }
 }
 
-@media all and (orientation: landscape) {
-  .VoteBodyWrapper_portrait {
-    display: none
+@media (orientation: landscape) {
+  .VoteBody_portrait {
+    display: none;
   }
 }
