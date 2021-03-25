@@ -134,22 +134,33 @@ const VotePage = (data) => {
 };
 const ChartPage = (data) => {
   const ChartBody = (data) => {
-    let columns = ChartBody_Columns(data.values);
+    let [columnsLandscape, columnsPortrait] = ChartBody_Columns(data.values);
     let users = ChartBody_Users(data.users);
     return /* html */ `
       <div class="PageBodyWrapper">
-        <div class="ChartBody">
-          <div class="ChartBody-InternalWrapper">
-            <div class="ChartBody-Columns">
-              ${columns.reduce((prev, cur) => prev + cur)}
-            </div>
-            <div class="ChartBody-Users">
-              ${users[0]}
-              <div class="Divider Divider_vertical"></div>
-              ${users[1]}
-            </div>
+
+        <div class="ChartBody ChartBody_landscape">
+          <div class="ChartBody-Columns ChartBody-Columns">
+            ${columnsLandscape.reduce((prev, cur) => prev + cur)}
+          </div>
+          <div class="ChartBody-Users">
+            ${users[0]}
+            <div class="Divider Divider_vertical"></div>
+            ${users[1]}
           </div>
         </div>
+      
+        <div class="ChartBody ChartBody_portrait">
+          <div class="ChartBody-Columns ChartBody-Columns">
+            ${columnsPortrait.slice(3, 9).reduce((prev, cur) => prev + cur)}
+          </div>
+          <div class="ChartBody-Users">
+            ${users[0]}
+            <div class="Divider Divider_horizontal"></div>
+            ${users[1]}
+          </div>
+        </div>
+
       </div>
     `;
   };
@@ -161,14 +172,18 @@ const ChartPage = (data) => {
       if (v.value > max.value) max = v;
     });
 
-    const LINE_HEIGHT_IN_PROCENTS = 65;
-    let columns = [];
+    const LINE_HEIGHT_IN_PROCENTS_LANDSCAPE = 55.71;
+    const LINE_HEIGHT_IN_PROCENTS_PORTRAIT = 63.1;
+    let columnsLandscape = [];
+    let columnsPortrait = [];
     for (let i = 0; i < 9; i++) {
       let v = values[i],
-        height = (v.value / max.value) * LINE_HEIGHT_IN_PROCENTS;
-      columns.push(ChartBody_Column(v, height, v === max));
+        heightLandscape = Math.floor((v.value / max.value) * LINE_HEIGHT_IN_PROCENTS_LANDSCAPE);
+      heightPortrait = Math.floor((v.value / max.value) * LINE_HEIGHT_IN_PROCENTS_PORTRAIT);
+      columnsLandscape.push(ChartBody_Column(v, heightLandscape, v === max));
+      columnsPortrait.push(ChartBody_Column(v, heightPortrait, v === max));
     }
-    return columns;
+    return [columnsLandscape, columnsPortrait];
   };
   const ChartBody_Column = (value, height, isActive) => /* html */ `
     <div class="ChartBody-Column Column">
@@ -286,7 +301,6 @@ const ActivityPage = (data) => {
       <span class="ActivityBody-IntervalValue fontColor_gray">${value}</span>
     </div>
   `;
-
   return Header(data) + ActivityBodyContainer(data);
 };
 const DiagramPage = (data) => {
