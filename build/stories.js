@@ -218,6 +218,18 @@ const ChartPage = (data) => {
 };
 const ActivityPage = (data) => {
   const ActivityBodyContainer = ({ data }) => {
+    let { mon, tue, wed, thu, fri, sat, sun } = data;
+    let days = [mon, tue, wed, thu, fri, sat, sun]
+    return ActivityBody(days);
+  };
+  const ActivityBody = (days) => /* html */ `
+      <div class="PageBodyWrapper">
+        <div class="ActivityBody">
+          ${ActivityBody_Field(days)}
+        </div>
+      </div>
+  `;
+  const ActivityBody_Field = (days) => {
     function parseTwoHoursIntoOne(days) {
       let horizontalDays = [[], [], [], [], [], [], []];
       for (i in days) {
@@ -242,41 +254,25 @@ const ActivityPage = (data) => {
       if (max === 2) borders.secondBorder = 1;
       return borders;
     }
-    let { mon, tue, wed, thu, fri, sat, sun } = data;
-    let daysForPortrait = [mon, tue, wed, thu, fri, sat, sun];
-    let daysForLandscape = parseTwoHoursIntoOne(daysForPortrait);
-    let bordersForPortrait = findBorders(daysForPortrait);
-    let bordersForLandscape = findBorders(daysForLandscape);
-    return ActivityBody(daysForPortrait, daysForLandscape, bordersForPortrait, bordersForLandscape);
-  };
-  const ActivityBody = (
-    daysForPortrait,
-    daysForLandscape,
-    bordersForPortrait,
-    bordersForLandscape
-  ) => /* html */ `
-      <div class="PageBodyWrapper">
-        <div class="ActivityBody">
-          <div class="ActivityBody-Field_landscape">
-            ${ActivityBody_Field(days, borders)}
-          </div>
-
-          <div class="ActivityBody-Field_portrait">
-            ${ActivityBody_Field(days, borders)}
-          </div>
-
-          <div class="ActivityBody-Intervals">
-            ${ActivityBody_Intevals(borders, "2 часа")}
-          </div>
-        </div>
-      </div>
-  `;
-  const ActivityBody_Field = (days, borders) => {
-    let res = "";
+    let resLandscape = "";
     for (i in days) {
-      res += ActivityBody_Field_Row(days[i], borders);
+      resLandscape += ActivityBody_Field_Row(days[i], borders);
     }
-    return res;
+    return /* html */`
+      <div class="ActivityBody-Field_portrait">
+        ${resLandscape}
+      </div>
+      <div class="ActivityBody-Intervals_portrait">
+        ${ActivityBody_Intevals(borders, "2 часа")}
+      </div>
+
+      <div class="ActivityBody-Field_landscape">
+        ${resLandscape}
+      </div>
+      <div class="ActivityBody-Intervals_landscape">
+        ${ActivityBody_Intevals(borders, "2 часа")}
+      </div>
+    `;
   };
   const ActivityBody_Field_Row = (day, borders) => {
     function findHeight(val, borders) {
