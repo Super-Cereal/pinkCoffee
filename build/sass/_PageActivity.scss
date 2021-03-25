@@ -1,5 +1,4 @@
 .ActivityBody {
-  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,6 +136,18 @@
       display: inline-block;
       margin-top: 8px;
     }
+  }
+}
+
+@media (orientation: portrait) {
+  &-Text_landscape {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) {
+  .Diagram-Text_portrait {
+    display: none;
   }
 }
 

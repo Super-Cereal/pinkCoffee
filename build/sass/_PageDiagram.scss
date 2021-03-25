@@ -91,6 +91,41 @@
   }
 }
 
+@media (orientation: portrait) {
+  .DiagramBody {
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 19px;
+  }
+  .Diagram {
+    min-width: 328px;
+    min-height: 328px;
+    &-Img img {
+      min-width: 328px;
+      min-height: 328px;
+    }
+    &-Text {
+      &_landscape {
+        display: none;
+      }
+      span:nth-child(1) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  .Legend {
+    min-width: 328px;
+    margin-top: 16px;
+    margin-left: 0;
+  }
+}
+
+@media (orientation: landscape) {
+  .Diagram-Text_portrait {
+    display: none;
+  }
+}
+
 .theme_light {
   .LegendLine-Title {
     &_0::before {
@@ -129,40 +164,5 @@
       box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
         inset 0px 0px 20px rgba(131, 131, 131, 0.6);
     }
-  }
-}
-
-@media (orientation: portrait) {
-  .DiagramBody {
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 12px;
-  }
-  .Diagram {
-    min-width: 328px;
-    min-height: 328px;
-    &-Img img {
-      min-width: 328px;
-      min-height: 328px;
-    }
-    &-Text {
-      &_landscape {
-        display: none;
-      }
-      span:nth-child(1) {
-        margin-bottom: 8px;
-      }
-    }
-  }
-  .Legend {
-    min-width: 328px;
-    margin-top: 16px;
-    margin-left: 0;
-  }
-}
-
-@media (orientation: landscape) {
-  .Diagram-Text_portrait {
-    display: none;
   }
 }

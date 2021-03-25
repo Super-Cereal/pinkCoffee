@@ -243,16 +243,28 @@ const ActivityPage = (data) => {
       return borders;
     }
     let { mon, tue, wed, thu, fri, sat, sun } = data;
-    let days = parseTwoHoursIntoOne([mon, tue, wed, thu, fri, sat, sun]);
-    let borders = findBorders(days);
-    return ActivityBody(days, borders);
+    let daysForPortrait = [mon, tue, wed, thu, fri, sat, sun];
+    let daysForLandscape = parseTwoHoursIntoOne(daysForPortrait);
+    let bordersForPortrait = findBorders(daysForPortrait);
+    let bordersForLandscape = findBorders(daysForLandscape);
+    return ActivityBody(daysForPortrait, daysForLandscape, bordersForPortrait, bordersForLandscape);
   };
-  const ActivityBody = (days, borders) => /* html */ `
+  const ActivityBody = (
+    daysForPortrait,
+    daysForLandscape,
+    bordersForPortrait,
+    bordersForLandscape
+  ) => /* html */ `
       <div class="PageBodyWrapper">
         <div class="ActivityBody">
-          <div class="ActivityBody-Field">
+          <div class="ActivityBody-Field_landscape">
             ${ActivityBody_Field(days, borders)}
           </div>
+
+          <div class="ActivityBody-Field_portrait">
+            ${ActivityBody_Field(days, borders)}
+          </div>
+
           <div class="ActivityBody-Intervals">
             ${ActivityBody_Intevals(borders, "2 часа")}
           </div>
