@@ -229,7 +229,7 @@ const ActivityPage = (data) => {
         </div>
       </div>
   `;
-  const ActivityBody_Field = (days) => {
+  const ActivityBody_Field = (daysPortrait) => {
     function parseTwoHoursIntoOne(days) {
       let horizontalDays = [[], [], [], [], [], [], []];
       for (i in days) {
@@ -255,26 +255,43 @@ const ActivityPage = (data) => {
       return borders;
     }
     let resLandscape = "";
-    for (i in days) {
-      resLandscape += ActivityBody_Field_Row(days[i], borders);
+    let daysLandscape = parseTwoHoursIntoOne(daysPortrait);
+    let bordersLandscape = findBorders(daysLandscape); 
+    for (i in daysLandscape) {
+      resLandscape += ActivityBody_Field_Row(daysLandscape[i], bordersLandscape);
+    }
+
+    let resPortrait = "";
+    let bordersPortrait = findBorders(daysPortrait);
+    let array;
+    for (i in daysPortrait[0]) {
+      array = [];
+      for (j in daysPortrait) {
+        array.push(daysPortrait[j][i])
+      }
+      resPortrait += ActivityBody_Field_Row(array, bordersPortrait)
     }
     return /* html */`
-      <div class="ActivityBody-Field_portrait">
-        ${resLandscape}
+      <div class="ActivityBody-FieldWrapper  ActivityBody-FieldWrapper_portrait">
+        <div class="ActivityBody-Field">
+          ${resPortrait}
+        </div>
       </div>
-      <div class="ActivityBody-Intervals_portrait">
-        ${ActivityBody_Intevals(borders, "2 часа")}
+      <div class="ActivityBody-Intervals ActivityBody-Intervals_portrait">
+        ${ActivityBody_Intevals(bordersPortrait, "1 час")}
       </div>
 
-      <div class="ActivityBody-Field_landscape">
-        ${resLandscape}
+      <div class="ActivityBody-FieldWrapper  ActivityBody-FieldWrapper_landscape">
+        <div class="ActivityBody-Field">
+          ${resLandscape}
+        </div>
       </div>
-      <div class="ActivityBody-Intervals_landscape">
-        ${ActivityBody_Intevals(borders, "2 часа")}
+      <div class="ActivityBody-Intervals ActivityBody-Intervals_landscape">
+        ${ActivityBody_Intevals(bordersLandscape, "2 часа")}
       </div>
     `;
   };
-  const ActivityBody_Field_Row = (day, borders) => {
+  const ActivityBody_Field_Row = (array, borders) => {
     function findHeight(val, borders) {
       if (val === 0) return "min";
       else if (1 <= val && val <= borders.firstBorder) return "mid";
@@ -282,7 +299,7 @@ const ActivityPage = (data) => {
       else if (borders.secondBorder < val && val <= borders.lastBorder) return "extra";
     }
     let res = "";
-    for (j in day) res += ActivityBody_Field_Turret(findHeight(day[j], borders));
+    for (j in array) res += ActivityBody_Field_Turret(findHeight(array[j], borders));
     return /*html*/ `<div class="ActivityBody-Row">${res}</div>`;
   };
   const ActivityBody_Field_Turret = (height) => /* html */ `

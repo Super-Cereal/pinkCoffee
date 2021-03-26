@@ -1,43 +1,63 @@
 .ActivityBody {
+  flex-grow: 1;
+  width: 63.623%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 425px;
-  &-Field {
-    width: 100%;
-    padding-top: 27px;
+  &-FieldWrapper {
     box-sizing: border-box;
+    // outline: 2px dashed red;
+    width: 100%;
+    padding-bottom: 26.35%;
+    position: relative;
+  }
+  &-Field {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
   &-Row {
+    width: 100%;
+    height: calc(100% / 3.5);
     display: flex;
-    &:nth-child(odd) {
-      justify-content: flex-start;
+    &:nth-child(even) .ActivityBody-Turret {
+      transform: translate(50%);
     }
-    &:nth-child(even) {
-      justify-content: flex-end;
+    &:nth-child(n + 2) {
+      margin-top: calc((100% / 23) * -1);
     }
   }
   &-Turret {
-    width: 34px;
-    height: 13px;
+    width: calc(100% / 12.5);
+    height: 100%;
     position: relative;
     &::after {
       display: block;
       position: absolute;
       bottom: 0;
+      content: "";
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
     }
     &_min::after {
-      content: url("images/1x/min-dark.png");
+      height: 100%;
+      background-image: url("images/2x/min-dark.png");
     }
     &_mid::after {
-      content: url("images/1x/mid-dark.png");
+      height: 123.5294%;
+      background-image: url("images/2x/mid-dark.png");
     }
     &_max::after {
-      content: url("images/1x/max-dark.png");
+      height: 170.588%;
+      background-image: url("images/2x/max-dark.png");
     }
     &_extra::after {
-      content: url("images/1x/extra-dark.png");
+      height: 217.647%;
+      background-image: url("images/2x/extra-dark.png");
     }
   }
   &-Intervals {
@@ -140,13 +160,34 @@
 }
 
 @media (orientation: portrait) {
-  &-Text_landscape {
+  .ActivityBody-FieldWrapper_landscape {
     display: none;
+  }
+  .ActivityBody-Intervals_landscape {
+    display: none;
+  }
+  .ActivityBody {
+    width: 87.23%;
+    &-FieldWrapper {
+      padding-bottom: 130.589%;
+    }
+    &-Row {
+      height: calc(100% / 9.79);
+      &:nth-child(n + 2) {
+        margin-top: calc((100% / 12.2) * -1);
+      }
+    }
+    &-Turret {
+      width: calc(100% / 7.5);
+    }
   }
 }
 
 @media (orientation: landscape) {
-  .Diagram-Text_portrait {
+  .ActivityBody-FieldWrapper_portrait {
+    display: none;
+  }
+  .ActivityBody-Intervals_portrait {
     display: none;
   }
 }
@@ -155,16 +196,16 @@
   .ActivityBody {
     &-Turret {
       &_min::after {
-        content: url("images/1x/min-light.png");
+        background-image: url("images/1x/min-light.png");
       }
       &_mid::after {
-        content: url("images/1x/mid-light.png");
+        background-image: url("images/1x/mid-light.png");
       }
       &_max::after {
-        content: url("images/1x/max-light.png");
+        background-image: url("images/1x/max-light.png");
       }
       &_extra::after {
-        content: url("images/1x/extra-light.png");
+        background-image: url("images/1x/extra-light.png");
       }
     }
     &-Interval {
