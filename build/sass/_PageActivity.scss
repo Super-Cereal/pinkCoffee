@@ -1,4 +1,5 @@
 .ActivityBody {
+  margin-top: 7.53;
   flex-grow: 1;
   width: 63.623%;
   display: flex;
@@ -168,6 +169,7 @@
   }
   .ActivityBody {
     width: 87.23%;
+    max-width: 600px;
     &-FieldWrapper {
       padding-bottom: 130.589%;
     }
@@ -179,6 +181,12 @@
     }
     &-Turret {
       width: calc(100% / 7.5);
+    }
+    &-Intervals {
+      margin-top: 15.144%;
+    }
+    &-Interval {
+      text-align: left;
     }
   }
 }
