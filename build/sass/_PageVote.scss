@@ -1,34 +1,35 @@
 .VoteBody {
   flex-grow: 1;
-  min-width: 607px;
+  @include media(min-width, (480px, 607px));
   display: flex;
   align-items: center;
-  // justify-content: space-between;
-  // решение не прошло из-за артефактов на автотестах
   &-PersonsGroup {
     display: grid;
-    row-gap: 4px;
-    // следующие два блока добавлены из-за ошибки в автотестах,
-    // лучше заменить на justify-content: space-between; для .VoteBody
+    @include media(row-gap, (4px, 8px, 10px));
+    // следующие два блока добавлены из-за незначительных
+    // артефактов на автотестах, лучше заменить 
+    // на justify-content: space-between; для .VoteBody
     &:nth-child(2) {
-      margin-left: 32px;
-      margin-right: 31px;
+      @include media(margin-left, (32px, 32px, 60px, 70px, 90px));
+      @include media(margin-right, (31px, 31px, 60px, 70px, 90px));
     }
     &:nth-last-child(2) {
-      margin-left: 31px;
-      margin-right: 32px;
+      @include media(margin-left, (31px, 31px, 60px, 70px, 90px));
+      @include media(margin-right, (32px, 32px, 60px, 70px, 90px));
     }
   }
   &-ButtonsGroup {
     display: grid;
-    row-gap: 56px;
+    @include media(row-gap, (56px, 56px, 100px));
   }
   &-Button {
     &::before {
       display: block;
-      content: url("/images/button-dark.svg");
-      width: 64px;
-      height: 64px;
+      content: '';
+      background: url("/images/button-dark.svg") no-repeat;
+      background-size: 100% 100%;
+      @include media(width, (55px, 64px, 85px, 100px, 135px));
+      @include media(height, (55px, 64px, 85px, 100px, 135px));
       margin: 0 auto;
     }
     &_top::before {
@@ -36,44 +37,37 @@
     }
     &:hover::before,
     &_disabled::before {
-      content: url("images/button-hover-dark.svg");
+      background: url("images/button-hover-dark.svg") no-repeat;
+      background-size: 100% 100%;
     }
   }
 }
 
-.theme_light {
-  .VoteBody {
-    &-Button {
-      &::before {
-        content: url("/images/button-light.svg");
-      }
-      &:hover::before,
-      &_disabled::before {
-        content: url("images/button-hover-light.svg");
-      }
-    }
-  }
-}
+
 
 @media (orientation: portrait) {
   .VoteBody_landscape {
     display: none;
   }
   .VoteBody {
-    min-width: 328px;
+    @include mediaPortrait(min-width, (270px, 328px, 360px));
     justify-content: space-between;
     &-PersonsGroup {
-      row-gap: 25px;
+      @include mediaPortrait(row-gap, (20px, 25px, 25px, 20px));
       &:nth-child(2),
       &:nth-last-child(2) {
         margin: 0;
       }
     }
     &-ButtonsGroup {
-      row-gap: 23px;
+      @include mediaPortrait(row-gap, (23px, 23px, 23px, 40px));
       .VoteBody-PersonsGroup {
         row-gap: 22px;
       }
+    }
+    &-Button::before {
+      @include mediaPortrait(width, (55px, 64px, 64px, 90px));
+      @include mediaPortrait(height, (55px, 64px, 64px, 90px));      
     }
   }
 }
@@ -81,5 +75,19 @@
 @media (orientation: landscape) {
   .VoteBody_portrait {
     display: none;
+  }
+}
+
+.theme_light {
+  .VoteBody {
+    &-Button {
+      &::before {
+        background-image: url("/images/button-light.svg");
+      }
+      &:hover::before,
+      &_disabled::before {
+        background-image: url("images/button-hover-light.svg");
+      }
+    }
   }
 }

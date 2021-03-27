@@ -49,8 +49,8 @@ const LeadersPage = (data) => {
       <div class="LeadersBody-PersonWrapper">
         <div class="Person Person_ordinary">
           <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
-            <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
-            <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
+            <source srcset="/images/2x/${user.avatar}" media="(max-width: 700px)">
+            <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
           </picture>
           <span class="Person-Name">${user.name}</span>
           <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
@@ -124,8 +124,8 @@ const VotePage = (data) => {
       isSelected ? "Person_ordinary_selected" : ""
     }" >
       <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
-        <source srcset="/images/1x/${user.avatar}" media="(min-width: 700px)">
-        <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
+        <source srcset="/images/2x/${user.avatar}" media="(min-width: 700px)">
+        <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
       </picture>
       <span class="Person-Name">${user.name}</span>
     </div>

@@ -13,8 +13,8 @@ BlockName-ElemName_modName_modVal
 Разделители имени и значения модификаторов совпадают с классической схемой.
 */
 
-@import "setup/_fontsAndColors.scss";
 @import "setup/_mediaMixin.scss";
+@import "setup/_fontsAndColors.scss";
 
 @import "common/_Person.scss";
 @import "common/_Header.scss";

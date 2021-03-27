@@ -3,6 +3,7 @@
     display: block;
   }
   &-Avatar {
+    width: 100%;
     border-radius: 50%;
     filter: grayscale(1);
   }
@@ -11,18 +12,18 @@
     overflow: hidden;
   }
   &-Value {
-    margin-top: 4px;
+    @include media(margin-top, (4px, 4px, 8px, 15px));
   }
   &_ordinary {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    min-width: 104px;
-    min-height: 142px;
+    @include media(width, (75px, 104px, 130px, 160px, 230px));
+    @include media(min-height, (105px, 142px, 190px, 250px, 335px));
+    margin: 0 auto;
     box-sizing: border-box;
-    padding-top: 20px;
-    border-radius: 6px;
+    @include media(padding-top, (14px, 20px, 28px, 40px, 45px));
+    @include media(border-radius, (6px, 6px, 12px, 12px, 20px));
     &_hoverOn {
       &:hover {
         background: radial-gradient(
@@ -34,11 +35,7 @@
           inset 2px 2px 16px rgba(255, 255, 255, 0.1);
       }
       &.Person_ordinary_selected {
-        background: radial-gradient(
-          91.67% 122.17% at 69.17% -11.17%,
-          #ffa300 0%,
-          #2d1c00 100%
-        );
+        background: radial-gradient(91.67% 122.17% at 69.17% -11.17%, #ffa300 0%, #2d1c00 100%);
         box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.4),
           inset 0px 6px 15px rgba(255, 162, 0, 0.4);
       }
@@ -46,6 +43,7 @@
     .Person {
       &-AvatarWrapper {
         position: relative;
+        @include media(width, (53px, 64px, 85px, 115px, 150px));
         &::before {
           display: block;
           content: attr(data-emoji);
@@ -53,13 +51,13 @@
           top: 10px;
           left: 50%;
           transform: translate(-50%, -100%);
-          font-size: 30px;
+          @include media(font-size, (22px, 30px, 38px, 45px, 60px));
           line-height: 32px;
           z-index: 5;
         }
       }
       &-Name {
-        max-width: 100px;
+        @include media(max-width, (71px, 100px, 126px, 150px, 236px));
         text-align: center;
         margin-top: 2px;
       }
@@ -67,18 +65,43 @@
   }
   &_horizontal {
     display: grid;
-    grid-template-columns: 40px 166px;
-    grid-template-rows: 40px;
-    column-gap: 14px;
+    @include media(
+      grid-template-columns,
+      (40px 120px, 40px 166px, 70px 250px, 80px 350px, 100px 470px)
+    );
+    @include media(grid-template-rows, (40px, 40px, 70px, 80px, 100px));
+    @include media(column-gap, (14px, 14px, 18px, 20px));
     .Person {
-      &-Avatar {
-        width: 40px;
-      }
       &-Info {
         display: flex;
         flex-direction: column;
         padding-top: 1px;
       }
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  .Person {
+    &_ordinary {
+      @include mediaPortrait(width, (80px, 104px, 104px, 160px));
+      @include mediaPortrait(min-height, (110px, 142px, 142px, 210px));
+      @include mediaPortrait(padding-top, (14px, 20px, 20px, 25px));
+      .Person {
+        &-AvatarWrapper {
+          @include mediaPortrait(width, (53px, 64px, 64px, 100px));
+          &::before {
+            @include mediaPortrait(font-size, (22px, 30px, 30px, 40px));
+          }
+        }
+        &-Name {
+          @include mediaPortrait(max-width, (70px, 100px, 116px, 146px));
+        }
+      }
+    }
+    &_horizontal {
+      @include mediaPortrait(grid-template-columns, (40px 1fr, 40px 1fr, 50px 1fr, 75px 1fr));
+      @include mediaPortrait(grid-template-rows, (40px, 40px, 50px, 75px));
     }
   }
 }

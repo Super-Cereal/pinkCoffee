@@ -12,7 +12,7 @@
     justify-content: space-between;
   }
   &-Users {
-    margin-top: 24px;
+    @include media(margin-top, (24px, 24px, 40px));
     width: 85.8696%;
     height: 13.4228%;
     display: flex;
@@ -27,7 +27,7 @@
   position: relative;
 
   height: 100%;
-  width: 40px;
+  @include media(width, (30px, 40px, 60px, 68px, 90px));
   &-Title {
     text-align: center;
   }
@@ -37,9 +37,9 @@
     transform: translate(-50%, calc(-100% - 8px));
   }
   &-Line {
-    border-radius: 6px;
-    min-height: 8px;
-    margin-bottom: 12px;
+    @include media(border-radius, (6px, 6px, 12px, 12px, 20px));
+    @include media(min-height, (8px, 8px, 8px, 8px, 8px));
+    @include media(margin-bottom, (12px, 12px, 12px, 12px, 12px));
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%),
       radial-gradient(149.08% 93.3% at 38.75% 72.1%, #000000 0%, #231900 0.01%, #4d4d4d 100%);
     box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
@@ -64,14 +64,19 @@
       transform: translate(-8px);
     }
     &-Users {
+      @include mediaPortrait(margin-top, (24px, 24px, 24px, 40px));
       width: 87.234%;
+      height: auto;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
       .Divider {
-        margin: 16px 0;
+        @include mediaPortrait(margin, (10px 0, 16px 0, 16px 0));
       }
     }
+  }
+  .Column {
+    @include mediaPortrait(width, (30px, 40px, 40px, 60px));
   }
 }
 

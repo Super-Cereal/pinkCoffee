@@ -1,62 +1,90 @@
 .LeadersBody {
   flex-grow: 1;
   display: flex;
-  justify-content: center;
   align-items: flex-end;
   &-Pedestals {
     display: flex;
     align-items: flex-end;
+    justify-content: center;
+    flex-grow: 1;
   }
   &-Pedestal {
-    $offset: 16px;
+    @include media(width, (100px, 120px, 190px, 230px, 320px));
     &_1 {
       z-index: 5;
     }
     &_2,
     &_3 {
       z-index: 3;
-      margin-right: -$offset;
-      margin-left: -$offset;
+      @include media(margin-right, (-10px, -16px, -20px, -25px, -35px));
+      @include media(margin-left, (-10px, -16px, -20px, -25px, -35px));
     }
     &_3 .LeadersBody,
     &_5 .LeadersBody {
       &-PersonWrapper,
       &-PlaceWrapper {
-        padding-right: $offset;
+        @include media(padding-right, (10px, 16px, 20px, 25px, -35px));
       }
     }
     &_2 .LeadersBody,
     &_4 .LeadersBody {
       &-PersonWrapper,
       &-PlaceWrapper {
-        padding-left: $offset;
+        @include media(padding-left, (10px, 16px, 20px, 25px, -35px));
       }
     }
   }
   &-PersonWrapper {
-    margin-bottom: 16px;
+    @include media(margin-bottom, (10px, 16px, 20px, 25px));
   }
   &-Block {
     text-align: center;
+    @include media(padding-top, (18px, 18px, 22px, 30px, 45px));
     padding-top: 18px;
-    height: 68px;
-    width: 120px;
+    width: 100%;
+    @include media(height, (60px, 68px, 150px, 150px, 220px));
     box-sizing: border-box;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    @include media(border-top-left-radius, (6px, 6px, 10px, 15px, 25px));
+    @include media(border-top-right-radius, (6px, 6px, 10px, 15px, 25px));
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) -2.22%, rgba(0, 0, 0, 0.8) 100%),
       radial-gradient(149.08% 95.38% at 38.75% 71.48%, #000000 0%, #231900 0.01%, #4d4d4d 100%);
     box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
       inset 2px 2px 16px rgba(103, 103, 103, 0.6);
     &_1 {
-      height: 108px;
+      @include media(height, (95px, 108px, 270px, 270px, 380px));
       background: radial-gradient(91.67% 122.17% at 69.17% -11.17%, #ffa300 0%, #2d1c00 100%);
       box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.4),
         inset 0px 6px 15px rgba(255, 162, 0, 0.4);
     }
     &_2,
     &_3 {
-      height: 88px;
+      @include media(height, (77px, 88px, 210px, 210px, 300px));
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  .LeadersBody {
+    &-Pedestal {
+      @include mediaPortrait(width, (100px, 120px, 130px, 220px));
+      &_4,
+      &_5 {
+        display: none;
+      }
+    }
+    &-PersonWrapper {
+      @include mediaPortrait(margin-bottom, (16px, 16px, 20px, 35px))
+    }
+    &-Block {
+      &_1 {
+        @include mediaPortrait(height, (275px, 325px, 375px, 470px));
+      }
+      &_2 {
+        @include mediaPortrait(height, (235px, 275px, 312.5px, 380px));
+      }
+      &_3 {
+        @include mediaPortrait(height, (200px, 225px, 250px, 290px));
+      }
     }
   }
 }
@@ -76,28 +104,6 @@
         background: linear-gradient(180deg, #fff2d1 0.82%, #ffd66c 100%);
         box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
           inset 0px 0px 20px rgba(255, 176, 57, 0.8);
-      }
-    }
-  }
-}
-
-@media (orientation: portrait) {
-  .LeadersBody {
-    &-Pedestal {
-      &_4,
-      &_5 {
-        display: none;
-      }
-    }
-    &-Block {
-      &_1 {
-        height: 325px;
-      }
-      &_2 {
-        height: 275px;
-      }
-      &_3 {
-        height: 225px;
       }
     }
   }
