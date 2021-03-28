@@ -80,7 +80,7 @@
     align-items: center;
   }
   &-Svg {
-    $min: calc(200 / 240);
+    $min: calc(240 / 240);
     @include media(transform, (scale($min) rotate(-120deg), scale(1) rotate(-120deg)));
     &_light {
       display: none;
