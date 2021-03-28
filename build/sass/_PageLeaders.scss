@@ -23,14 +23,14 @@
     &_5 .LeadersBody {
       &-PersonWrapper,
       &-PlaceWrapper {
-        @include media(padding-right, (10px, 16px, 20px, 25px, -35px));
+        @include media(padding-right, (10px, 16px, 20px, 25px, 35px));
       }
     }
     &_2 .LeadersBody,
     &_4 .LeadersBody {
       &-PersonWrapper,
       &-PlaceWrapper {
-        @include media(padding-left, (10px, 16px, 20px, 25px, -35px));
+        @include media(padding-left, (10px, 16px, 20px, 25px, 35px));
       }
     }
   }
@@ -75,6 +75,18 @@
       &_4,
       &_5 {
         display: none;
+      }
+      &_3 .LeadersBody {
+        &-PersonWrapper,
+        &-PlaceWrapper {
+          @include mediaPortrait(padding-right, (10px, 16px, 20px, 25px));
+        }
+      }
+      &_2 .LeadersBody {
+        &-PersonWrapper,
+        &-PlaceWrapper {
+          @include mediaPortrait(padding-left, (10px, 16px, 20px, 25px));
+        }
       }
     }
     &-PersonWrapper {
