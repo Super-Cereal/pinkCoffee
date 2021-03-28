@@ -17,15 +17,13 @@
   align-items: center;
   height: 50px;
   &-DiffText {
-    margin-right: 15px;
+    margin-right: 13px;
   }
   &-Title {
     margin-left: 26px;
-    position: relative;
     &::before {
       display: block;
       position: absolute;
-      bottom: 0;
       content: "";
       border-radius: 50%;
       width: 16px;
@@ -75,8 +73,11 @@
   position: relative;
   &-Img {
     overflow: hidden;
-    svg {
-      transform: scale(1) rotate(-120deg);
+  }
+  &-Svg {
+    transform: scale(1) rotate(-120deg);
+    &_light {
+      display: none;
     }
   }
   &-Text {
@@ -136,6 +137,14 @@
 }
 
 .theme_light {
+  .Diagram-Svg {
+    &_light {
+      display: block;
+    }
+    &_dark {
+      display: none;
+    }
+  }
   .LegendLine-Title {
     &_0::before {
       background: radial-gradient(
