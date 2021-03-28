@@ -7,7 +7,7 @@
 }
 
 .Legend {
-  min-width: 304px;
+  @include media(width, (240px, 304px));
   margin-left: 40px;
 }
 
@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  @include media(height, (40px, 50px));
   &-DiffText {
     margin-right: 13px;
   }
@@ -26,7 +26,7 @@
       position: absolute;
       content: "";
       border-radius: 50%;
-      width: 15px;
+      width: 16px;
       height: 16px;
     }
     &_0::before {
@@ -68,14 +68,20 @@
 }
 
 .Diagram {
-  min-width: 240px;
-  height: 240px;
+  @include media(width, (200px, 240px));
+  @include media(height, (200px, 240px));
   position: relative;
   &-Img {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &-Svg {
-    transform: scale(1) rotate(-120deg);
+    $min: calc(200 / 240);
+    @include media(transform, (scale($min) rotate(-120deg), scale(1) rotate(-120deg)));
     &_light {
       display: none;
     }
