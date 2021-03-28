@@ -186,7 +186,7 @@
       padding-bottom: 130.589%;
     }
     &-Row {
-      height: calc(100% / 9.8);
+      height: calc(100% / 9.81);
       &:nth-child(n + 2) {
         margin-top: calc((100% / 12.2) * -1);
       }
