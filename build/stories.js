@@ -375,20 +375,20 @@ const DiagramPage = (data) => {
     </defs>
     <circle r="15.9" fill="transparent" stroke="url(#paint03_radial)" stroke-opacity="0.8"
         stroke-dasharray="15.4835 100" transform="translate(19.3, 19.3)" 
-        stroke-width="6.2" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-15.4835" transform="translate(19.3, 19.3)"/>
+        stroke-width="6" />
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-15.4835" transform="translate(19.3, 19.3)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint00_radial)" stroke-opacity="0.6"
         stroke-dasharray="16.5824 100" stroke-dashoffset="-16.4835"
-        transform="translate(19.3, 19.3)"  stroke-width="6.2" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-33.0659" transform="translate(19.3, 19.3)"/>
+        transform="translate(19.3, 19.3)"  stroke-width="6" />
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-33.0659" transform="translate(19.3, 19.3)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint02_radial)" stroke-opacity="0.25"
         stroke-dasharray="30.8681 100" stroke-dashoffset="-34.0659" 
-        transform="translate(19.3, 19.3)" stroke-width="6.2" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-64.934" transform="translate(19.3, 19.3)"/>
+        transform="translate(19.3, 19.3)" stroke-width="6" />
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-64.934" transform="translate(19.3, 19.3)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint01_radial)" stroke-opacity="0.5"
         stroke-dasharray="33.0659 100" stroke-dashoffset="-65.934"
-        transform="translate(19.3, 19.3)" stroke-width="6.2" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-98.9999" transform="translate(19.3, 19.3)"/>
+        transform="translate(19.3, 19.3)" stroke-width="6" />
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-98.9999" transform="translate(19.3, 19.3)"/>
   </svg>
   <svg class="Diagram-Svg Diagram-Svg_dark" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
        version="1.1" width="240" height="240" viewbox="0 0 38.6 38.6">
@@ -412,20 +412,20 @@ const DiagramPage = (data) => {
         </defs>
         <circle r="15.9" fill="transparent" stroke="url(#paint3_dark_radial)" stroke-opacity="0.8"
             stroke-dasharray="15.4835 100" transform="translate(19.3, 19.3)" 
-            stroke-width="6.2" />
-        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-15.4835" transform="translate(19.3, 19.3)"/>
+            stroke-width="6" />
+        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-15.4835" transform="translate(19.3, 19.3)"/>
         <circle r="15.9" fill="transparent" stroke="url(#paint0_dark_radial)" stroke-opacity="0.6"
             stroke-dasharray="16.5824 100" stroke-dashoffset="-16.4835"
-            transform="translate(19.3, 19.3)"  stroke-width="6.2" />
-        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-33.0659" transform="translate(19.3, 19.3)"/>
+            transform="translate(19.3, 19.3)"  stroke-width="6" />
+        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-33.0659" transform="translate(19.3, 19.3)"/>
         <circle r="15.9" fill="transparent" stroke="url(#paint2_dark_radial)" stroke-opacity="0.25"
             stroke-dasharray="30.8681 100" stroke-dashoffset="-34.0659" 
-            transform="translate(19.3, 19.3)" stroke-width="6.2" />
-        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-64.934" transform="translate(19.3, 19.3)"/>
+            transform="translate(19.3, 19.3)" stroke-width="6" />
+        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-64.934" transform="translate(19.3, 19.3)"/>
         <circle r="15.9" fill="transparent" stroke="url(#paint1_dark_radial)" stroke-opacity="0.5"
             stroke-dasharray="33.0659 100" stroke-dashoffset="-65.934"
-            transform="translate(19.3, 19.3)" stroke-width="6.2" />
-        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6.2" stroke-dasharray="1 100" stroke-dashoffset="-98.9999" transform="translate(19.3, 19.3)"/>
+            transform="translate(19.3, 19.3)" stroke-width="6" />
+        <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="6" stroke-dasharray="1 100" stroke-dashoffset="-98.9999" transform="translate(19.3, 19.3)"/>
       </svg>
   `;
   const DiagramBody_Legend = (categories) => {
