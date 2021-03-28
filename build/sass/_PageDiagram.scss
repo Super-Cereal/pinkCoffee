@@ -7,7 +7,7 @@
 }
 
 .Legend {
-  @include media(width, (240px, 304px));
+  @include media(width, (240px, 304px, 440px, 640px));
   margin-left: 40px;
 }
 
@@ -15,19 +15,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @include media(height, (40px, 50px));
+  @include media(height, (40px, 50px, 70px, 85px, 110px));
   &-DiffText {
     margin-right: 13px;
   }
   &-Title {
-    margin-left: 26px;
+    @include media(margin-left, (26px, 26px, 35px));
+    position: relative;
     &::before {
       display: block;
       position: absolute;
       content: "";
+      top: 50%;
+      transform: translateY(-50%);
       border-radius: 50%;
-      width: 16px;
-      height: 16px;
+      @include media(width, (16px, 16px, 20px));
+      @include media(height, (16px, 16px, 20px));
     }
     &_0::before {
       background: radial-gradient(
@@ -68,8 +71,8 @@
 }
 
 .Diagram {
-  @include media(width, (200px, 240px));
-  @include media(height, (200px, 240px));
+  @include media(width, (200px, 240px, 330px, 450px, 620px));
+  @include media(height, (200px, 240px, 330px, 450px, 620px));
   position: relative;
   &-Img {
     width: 100%;
@@ -80,8 +83,19 @@
     align-items: center;
   }
   &-Svg {
-    $min: calc(240 / 240);
-    @include media(transform, (scale($min) rotate(-120deg), scale(1) rotate(-120deg)));
+    $mid: calc(330 / 240);
+    $max: calc(450 / 240);
+    $extra: calc(620 / 240);
+    @include media(
+      transform,
+      (
+        scale(1) rotate(-120deg),
+        scale(1) rotate(-120deg),
+        scale($mid) rotate(-120deg),
+        scale($max) rotate(-120deg),
+        scale($extra) rotate(-120deg)
+      )
+    );
     &_light {
       display: none;
     }
@@ -108,17 +122,29 @@
     padding-top: 23px;
   }
   .Diagram {
-    min-width: 328px;
-    min-height: 328px;
+    @include mediaPortrait(width, (280px, 328px, 360px, 500px));
+    @include mediaPortrait(height, (280px, 328px, 360px, 500px));
     &-Img {
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      svg {
-        transform: rotate(-120deg) scale(calc(328 / 240));
-      }
+    }
+    &-Svg {
+      $min: calc(280 / 240);
+      $mid: calc(328 / 240);
+      $max: calc(360 / 240);
+      $extra: calc(500 / 240);
+      @include mediaPortrait(
+        transform,
+        (
+          scale($min) rotate(-120deg),
+          scale($mid) rotate(-120deg),
+          scale($max) rotate(-120deg),
+          scale($extra) rotate(-120deg)
+        )
+      );
     }
     &-Text {
       &_landscape {
@@ -130,9 +156,12 @@
     }
   }
   .Legend {
-    min-width: 328px;
+    @include mediaPortrait(width, (280px, 328px, 360px, 500px));
     margin-top: 16px;
     margin-left: 0;
+  }
+  .LegendLine {
+    @include mediaPortrait(height, (50px, 50px, 55px, 80px))
   }
 }
 
