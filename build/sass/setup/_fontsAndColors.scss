@@ -22,7 +22,7 @@ html {
   font-family: "Roboto", serif;
   font-style: normal;
   font-weight: 500;
-  @include media(font-size, (13px, 16px, 22px, 28px, 38px));
+  @include media(font-size, (13px, 16px, 22px, 26px, 38px));
   line-height: 1.125rem;
 }
 body {

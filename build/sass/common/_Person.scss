@@ -12,17 +12,17 @@
     overflow: hidden;
   }
   &-Value {
-    @include media(margin-top, (4px, 4px, 8px, 15px));
+    margin-top: 4px;
   }
   &_ordinary {
     display: flex;
     flex-direction: column;
     align-items: center;
     @include media(width, (75px, 104px, 130px, 160px, 230px));
-    @include media(min-height, (105px, 142px, 190px, 250px, 335px));
+    @include media(min-height, (105px, 142px, 190px, 230px, 335px));
     margin: 0 auto;
     box-sizing: border-box;
-    @include media(padding-top, (14px, 20px, 28px, 40px, 45px));
+    @include media(padding-top, (14px, 20px, 28px, 28px, 45px));
     @include media(border-radius, (6px, 6px, 8px, 8px, 12px));
     &_hoverOn {
       &:hover {

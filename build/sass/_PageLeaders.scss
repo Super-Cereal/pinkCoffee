@@ -35,14 +35,14 @@
     }
   }
   &-PersonWrapper {
-    @include media(margin-bottom, (10px, 16px, 20px, 25px));
+    @include media(margin-bottom, (10px, 16px, 20px));
   }
   &-Block {
     text-align: center;
     @include media(padding-top, (18px, 18px, 22px, 30px, 45px));
     padding-top: 18px;
     width: 100%;
-    @include media(height, (60px, 68px, 150px, 150px, 220px));
+    @include media(height, (60px, 68px, 150px, 140px, 220px));
     box-sizing: border-box;
     @include media(border-top-left-radius, (6px, 6px, 10px, 15px, 25px));
     @include media(border-top-right-radius, (6px, 6px, 10px, 15px, 25px));
@@ -51,14 +51,14 @@
     box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.2),
       inset 2px 2px 16px rgba(103, 103, 103, 0.6);
     &_1 {
-      @include media(height, (95px, 108px, 270px, 270px, 380px));
+      @include media(height, (95px, 108px, 270px, 260px, 380px));
       background: radial-gradient(91.67% 122.17% at 69.17% -11.17%, #ffa300 0%, #2d1c00 100%);
       box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.4),
         inset 0px 6px 15px rgba(255, 162, 0, 0.4);
     }
     &_2,
     &_3 {
-      @include media(height, (77px, 88px, 210px, 210px, 300px));
+      @include media(height, (77px, 88px, 210px, 200px, 300px));
     }
   }
 }

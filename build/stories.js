@@ -77,8 +77,10 @@ const VotePage = (data) => {
            ${persons[4]}
           </div>
           <div class="VoteBody-ButtonsGroup">
-            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled"></div>
-            <div class="VoteBody-Button VoteBody-Button_bottom"></div>
+            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled" 
+              data-action="update" data-params="{alias: 'vote', data: {offset: ${data.users[0].id}}}"></div>
+            <div class="VoteBody-Button VoteBody-Button_bottom" 
+              data-action="update" data-params="{alias: 'vote', data: {offset: ${data.users[6].id}}}"></div>
           </div>
           <div class="VoteBody-PersonsGroup">
            ${persons[2]}
@@ -94,12 +96,14 @@ const VotePage = (data) => {
             ${persons[6]}
           </div>
           <div class="VoteBody-ButtonsGroup">
-            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled"></div>
+            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled"
+              data-params="{alias: 'vote', data: {offset: ${data.users[0].id}}}"></div>
               <div class="VoteBody-PersonsGroup">
                 ${persons[1]}
                 ${persons[4]}            
               </div>
-            <div class="VoteBody-Button VoteBody-Button_bottom"></div>
+            <div class="VoteBody-Button VoteBody-Button_bottom"
+              data-params="{alias: 'vote', data: {offset: ${data.users[8].id}}}"></div>
           </div>
           <div class="VoteBody-PersonsGroup">
             ${persons[2]}
@@ -122,7 +126,7 @@ const VotePage = (data) => {
   const VoteBody_Person = (user, emoji, isSelected) => /* html */ `
     <div class="Person Person_ordinary Person_ordinary_hoverOn ${
       isSelected ? "Person_ordinary_selected" : ""
-    }" >
+    }" data-action="update" data-params="{alias: 'leaders',  data: { selectedUserId: ${user.id}}}">
       <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
         <source srcset="/images/2x/${user.avatar}" media="(min-width: 700px)">
         <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
