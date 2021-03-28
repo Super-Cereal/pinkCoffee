@@ -67,13 +67,18 @@
   .LeadersBody {
     &-Pedestal {
       @include mediaPortrait(width, (100px, 120px, 130px, 220px));
+      &_2,
+      &_3 {
+        @include mediaPortrait(margin-right, (-10px, -16px, -20px, -25px));
+        @include mediaPortrait(margin-left, (-10px, -16px, -20px, -25px));
+      }
       &_4,
       &_5 {
         display: none;
       }
     }
     &-PersonWrapper {
-      @include mediaPortrait(margin-bottom, (16px, 16px, 20px, 35px))
+      @include mediaPortrait(margin-bottom, (16px, 16px, 20px, 35px));
     }
     &-Block {
       &_1 {

@@ -5,7 +5,7 @@
   align-items: center;
   &-PersonsGroup {
     display: grid;
-    @include media(row-gap, (4px, 8px, 10px));
+    @include media(row-gap, (4px, 4px, 10px));
     // следующие два блока добавлены из-за незначительных
     // артефактов на автотестах, лучше заменить 
     // на justify-content: space-between; для .VoteBody
