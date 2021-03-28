@@ -72,9 +72,11 @@
   min-width: 240px;
   height: 240px;
   position: relative;
-  &-Img img {
-    width: 240px;
-    height: 240px;
+  &-Img {
+    overflow: hidden;
+    svg {
+      transform: scale(1) rotate(-120deg);
+    }
   }
   &-Text {
     position: absolute;
