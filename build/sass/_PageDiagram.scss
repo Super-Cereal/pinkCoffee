@@ -20,17 +20,17 @@
     margin-right: 13px;
   }
   &-Title {
-    @include media(margin-left, (26px, 26px, 35px));
+    @include media(margin-left, (26px, 26px, 35px, 45px));
     position: relative;
     &::before {
       display: block;
       position: absolute;
       content: "";
-      top: 50%;
+      top: calc(50% + 1px);
       transform: translateY(-50%);
       border-radius: 50%;
-      @include media(width, (16px, 16px, 20px));
-      @include media(height, (16px, 16px, 20px));
+      @include media(width, (16px, 16px, 22px, 32px));
+      @include media(height, (16px, 16px, 22px, 32px));
     }
     &_0::before {
       background: radial-gradient(

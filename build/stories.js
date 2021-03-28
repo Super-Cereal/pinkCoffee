@@ -223,7 +223,7 @@ const ChartPage = (data) => {
 const ActivityPage = (data) => {
   const ActivityBodyContainer = ({ data }) => {
     let { mon, tue, wed, thu, fri, sat, sun } = data;
-    let days = [mon, tue, wed, thu, fri, sat, sun]
+    let days = [mon, tue, wed, thu, fri, sat, sun];
     return ActivityBody(days);
   };
   const ActivityBody = (days) => /* html */ `
@@ -260,7 +260,7 @@ const ActivityPage = (data) => {
     }
     let resLandscape = "";
     let daysLandscape = parseTwoHoursIntoOne(daysPortrait);
-    let bordersLandscape = findBorders(daysLandscape); 
+    let bordersLandscape = findBorders(daysLandscape);
     for (i in daysLandscape) {
       resLandscape += ActivityBody_Field_Row(daysLandscape[i], bordersLandscape);
     }
@@ -271,11 +271,11 @@ const ActivityPage = (data) => {
     for (i in daysPortrait[0]) {
       array = [];
       for (j in daysPortrait) {
-        array.push(daysPortrait[j][i])
+        array.push(daysPortrait[j][i]);
       }
-      resPortrait += ActivityBody_Field_Row(array, bordersPortrait)
+      resPortrait += ActivityBody_Field_Row(array, bordersPortrait);
     }
-    return /* html */`
+    return /* html */ `
       <div class="ActivityBody-FieldWrapper  ActivityBody-FieldWrapper_portrait">
         <div class="ActivityBody-Field">
           ${resPortrait}
@@ -336,15 +336,27 @@ const DiagramPage = (data) => {
   const DiagramBody = (data) => /* html */ `
     <div class="PageBodyWrapper">
       <div class="DiagramBody">
-        ${DiagramBody_Diagram(data.totalText, data.differenceText)}
+        ${DiagramBody_Diagram(data.totalText, data.differenceText, data.categories)}
         ${DiagramBody_Legend(data.categories)}
       </div>
     </div>
   `;
-  const DiagramBody_Diagram = (totalText, differenceText) => /* html */ `
+  const DiagramBody_Diagram = (totalText, differenceText, categories) => {
+    let total = Number(totalText.split(" ")[0]);
+    let dasharray = [],
+      dashoffset = [];
+    let curoffset = 0;
+    for (i in categories) {
+      let numberOfCommits = Number(categories[i].valueText.split(" ")[0]);
+      let percent = (numberOfCommits * 100) / total;
+      dasharray.push(percent - 1);
+      dashoffset.push(curoffset + percent);
+      curoffset += percent;
+    }
+    return /* html */ `
     <div class="DiagramBody-Diagram Diagram">
       <div class="Diagram-Img">
-        ${DiagramBody_Diagram_svg()}
+        ${DiagramBody_Diagram_svg(dasharray, dashoffset)}
       </div>
       <div class="Diagram-Text Diagram-Text_landscape">
         <span class="fontType_subhead">${totalText}</span>
@@ -356,43 +368,44 @@ const DiagramPage = (data) => {
       </div>
     </div>
   `;
-  const DiagramBody_Diagram_svg = () => /* html */ `
+  };
+  const DiagramBody_Diagram_svg = (dasharray, dashoffset) => /* html */ `
     <svg class="Diagram-Svg Diagram-Svg_light" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
     version="1.1" width="240" height="240" viewbox="0 0 37.4 37.4">
     <defs>
-      <radialGradient id="paint00_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
+      <radialGradient id="paint0_light_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
         <stop offset="0.8125" stop-color="#FFB800" stop-opacity="0.4"/>
         <stop offset="1" stop-color="#FFEF99" stop-opacity="0.2"/>
       </radialGradient>
-      <radialGradient id="paint01_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
+      <radialGradient id="paint1_light_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
             <stop offset="0.828125" stop-color="#BFBFBF" stop-opacity="0.69"/>
             <stop offset="0.921875" stop-color="#E4E4E4" stop-opacity="0.2"/>
       </radialGradient>
-      <radialGradient id="paint02_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
+      <radialGradient id="paint2_light_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
             <stop offset="0.828125" stop-color="#A6A6A6" stop-opacity="0.69"/>
             <stop offset="0.921875" stop-color="#CBCBCB" stop-opacity="0.2"/>
       </radialGradient>
-      <radialGradient id="paint03_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
+      <radialGradient id="paint3_light_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="scale(20.6)">
             <stop offset="0.8125" stop-color="#FFB800" stop-opacity="0.7"/>
             <stop offset="1" stop-color="#FFEF99" stop-opacity="0.4"/>
       </radialGradient>
     </defs>
-    <circle r="15.9" fill="transparent" stroke="url(#paint03_radial)" stroke-opacity="0.8"
-        stroke-dasharray="15.4835 100" transform="translate(18.7, 18.7)" 
+    <circle r="15.9" fill="transparent" stroke="url(#paint3_light_radial)" stroke-opacity="0.8"
+        stroke-dasharray="+${dasharray[0]} 100" transform="translate(18.7, 18.7)" 
         stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-15.4835" transform="translate(18.7, 18.7)"/>
-    <circle r="15.9" fill="transparent" stroke="url(#paint00_radial)" stroke-opacity="0.7"
-        stroke-dasharray="16.5824 100" stroke-dashoffset="-16.4835"
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[0] - 1}" transform="translate(18.7, 18.7)"/>
+    <circle r="15.9" fill="transparent" stroke="url(#paint0_light_radial)" stroke-opacity="0.7"
+        stroke-dasharray="+${dasharray[1]} 100" stroke-dashoffset="-${dashoffset[0]}"
         transform="translate(18.7, 18.7)"  stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-33.0659" transform="translate(18.7, 18.7)"/>
-    <circle r="15.9" fill="transparent" stroke="url(#paint02_radial)" stroke-opacity="0.35"
-        stroke-dasharray="30.8681 100" stroke-dashoffset="-34.0659" 
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[1] - 1}" transform="translate(18.7, 18.7)"/>
+    <circle r="15.9" fill="transparent" stroke="url(#paint2_light_radial)" stroke-opacity="0.35"
+        stroke-dasharray="+${dasharray[2]} 100" stroke-dashoffset="-${dashoffset[1]}" 
         transform="translate(18.7, 18.7)" stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-64.934" transform="translate(18.7, 18.7)"/>
-    <circle r="15.9" fill="transparent" stroke="url(#paint01_radial)" stroke-opacity="0.8"
-        stroke-dasharray="33.0659 100" stroke-dashoffset="-65.934"
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[2] - 1}" transform="translate(18.7, 18.7)"/>
+    <circle r="15.9" fill="transparent" stroke="url(#paint1_light_radial)" stroke-opacity="0.8"
+        stroke-dasharray="+${dasharray[3]} 100" stroke-dashoffset="-${dashoffset[2]}"
         transform="translate(18.7, 18.7)" stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-98.9999" transform="translate(18.7, 18.7)"/>
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[3] - 1}" transform="translate(18.7, 18.7)"/>
   </svg>
   
   <svg class="Diagram-Svg Diagram-Svg_dark" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -416,21 +429,21 @@ const DiagramPage = (data) => {
        </radialGradient>
      </defs>
      <circle r="15.9" fill="transparent" stroke="url(#paint3_dark_radial)" stroke-opacity="0.8"
-         stroke-dasharray="15.4835 100" transform="translate(18.7, 18.7)" 
+         stroke-dasharray="+${dasharray[0]} 100" transform="translate(18.7, 18.7)" 
          stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-15.4835" transform="translate(18.7, 18.7)"/>
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[0] - 1}" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint0_dark_radial)" stroke-opacity="0.75"
-         stroke-dasharray="16.5824 100" stroke-dashoffset="-16.4835"
+         stroke-dasharray="+${dasharray[1]} 100" stroke-dashoffset="-${dashoffset[0]}"
          transform="translate(18.7, 18.7)"  stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-33.0659" transform="translate(18.7, 18.7)"/>
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[1] - 1}" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint2_dark_radial)" stroke-opacity="0.55"
-         stroke-dasharray="30.8681 100" stroke-dashoffset="-34.0659" 
+         stroke-dasharray="+${dasharray[2]} 100" stroke-dashoffset="-${dashoffset[1]}" 
          transform="translate(18.7, 18.7)" stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-64.934" transform="translate(18.7, 18.7)"/>
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[2] - 1}" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint1_dark_radial)" stroke-opacity="0.5"
-         stroke-dasharray="33.0659 100" stroke-dashoffset="-65.934"
+         stroke-dasharray="+${dasharray[3]} 100" stroke-dashoffset="-${dashoffset[2]}"
          transform="translate(18.7, 18.7)" stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-98.9999" transform="translate(18.7, 18.7)"/>
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${dashoffset[3] - 1}" transform="translate(18.7, 18.7)"/>
   </svg>
   `;
   const DiagramBody_Legend = (categories) => {
