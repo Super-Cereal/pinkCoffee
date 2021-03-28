@@ -161,7 +161,7 @@
     margin-left: 0;
   }
   .LegendLine {
-    @include mediaPortrait(height, (50px, 50px, 55px, 80px))
+    @include mediaPortrait(height, (50px, 50px, 55px, 80px));
   }
 }
 

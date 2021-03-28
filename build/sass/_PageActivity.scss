@@ -22,7 +22,7 @@
   }
   &-Row {
     width: 100%;
-    height: calc(100% / 3.51);
+    height: calc(100% / 3.5);
     display: flex;
     &:nth-child(even) .ActivityBody-Turret {
       transform: translate(50%);
@@ -186,7 +186,7 @@
       padding-bottom: 130.589%;
     }
     &-Row {
-      height: calc(100% / 9.79);
+      height: calc(100% / 9.8);
       &:nth-child(n + 2) {
         margin-top: calc((100% / 12.2) * -1);
       }
