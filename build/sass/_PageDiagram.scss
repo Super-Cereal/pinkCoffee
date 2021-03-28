@@ -17,7 +17,7 @@
   align-items: center;
   height: 50px;
   &-DiffText {
-    margin-right: 16px;
+    margin-right: 14px;
   }
   &-Title {
     margin-left: 26px;
@@ -28,7 +28,6 @@
       border-radius: 50%;
       width: 16px;
       height: 16px;
-      transform: matrix(1, 0, 0, -1, 0, 0);
     }
     &_0::before {
       background: radial-gradient(
