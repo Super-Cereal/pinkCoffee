@@ -13,6 +13,8 @@
   }
   &-Value {
     margin-top: 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   &_ordinary {
     display: flex;
@@ -51,8 +53,8 @@
           top: 10px;
           left: 50%;
           transform: translate(-50%, -100%);
-          @include media(font-size, (22px, 30px, 38px, 45px, 60px));
-          line-height: 32px;
+          font-size: 2rem;
+          line-height: 2rem;
           z-index: 5;
         }
       }
@@ -62,6 +64,8 @@
         margin-top: 2px;
       }
       &-Value {
+        @include media(max-width, (71px, 100px, 126px, 150px, 236px));
+        text-align: center;
         margin-bottom: 16px;
       }
     }

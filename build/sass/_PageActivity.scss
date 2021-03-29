@@ -10,6 +10,7 @@
     margin-top: -1px;
     box-sizing: border-box;
     width: 100%;
+    // для сохранения пропорций прямоугольника
     padding-bottom: 26.35%;
     position: relative;
   }
@@ -183,6 +184,7 @@
     max-width: 560px;
     margin-top: 17px;
     &-FieldWrapper {
+      // для сохранения пропорций прямоугольника
       padding-bottom: 130.589%;
     }
     &-Row {
@@ -195,7 +197,7 @@
       width: calc(100% / 7.5);
     }
     &-Intervals {
-      margin-top: 15.144%;
+      @include mediaPortrait(margin-top, (12%, 15.144%, 15.144%, 6%));
     }
     &-Interval {
       text-align: left;

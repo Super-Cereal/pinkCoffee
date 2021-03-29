@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 
 const __dirname = path.resolve();
-const PORT = process.env.PORT ?? 5000;
+const PORT = process.env.PORT ?? 8080;
 const app = express();
 app.use(express.static(__dirname + "/build"));
 
@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
       <head>
         <link rel="stylesheet" href="/stories.css">
         <meta name="viewport" content="width=device-width">
+        <link rel="icon" href="/images/lightFavicon.png" type="image/x-icon">
       </head>
       <body class="theme_${themeColor}">
         <script type="text/javascript" src="data.js"></script>

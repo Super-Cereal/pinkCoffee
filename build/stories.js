@@ -32,43 +32,35 @@ const LeadersPage = (data) => {
         continue;
       }
       let curUserEmoji = i === 0 ? emoji : user.id === selectedUserId ? "👍" : "";
-      usersPedestals.push(LeadersBody_Pedestal(user, i + 1, curUserEmoji));
+      usersPedestals.push(LeadersBody_Pedestal(user, i + 1, i + 1, curUserEmoji));
     }
     // на случай если выбранный юзер не находится в лидерах
     if (selectedUserId) {
       // для горизонтальной ориентации
       let selectedUserIndex = users.findIndex((u) => u.id === selectedUserId);
       if (selectedUserIndex > 4) {
-        usersPedestals[4] = LeadersBody_Pedestal(
-          users[selectedUserIndex],
-          selectedUserIndex + 1,
-          "👍"
-        );
+        usersPedestals[4] = LeadersBody_Pedestal(users[selectedUserIndex], selectedUserIndex + 1, 5, "👍");
       }
       // для портретной ориентации
       if (selectedUserIndex > 2) {
-        usersPedestals[0] += LeadersBody_ThirdWheel(
-          users[selectedUserIndex],
-          selectedUserIndex + 1,
-          "👍"
-        );
+        usersPedestals[0] += LeadersBody_ThirdWheel(users[selectedUserIndex], selectedUserIndex + 1, "👍");
       }
     }
     return usersPedestals;
   };
-  const LeadersBody_Pedestal = (user, place, emoji) => /*html*/ `
-    <section class="LeadersBody-Pedestal LeadersBody-Pedestal_${place}">
+  const LeadersBody_Pedestal = (user, place, pedestalNumber, emoji) => /*html*/ `
+    <section class="LeadersBody-Pedestal LeadersBody-Pedestal_${pedestalNumber}">
       <div class="LeadersBody-PersonWrapper">
         <div class="Person Person_ordinary">
           <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
-            <source srcset="/images/2x/${user.avatar}" media="(max-width: 700px)">
-            <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
+            <img class="Person-Avatar" src="/images/2x/${user.avatar}" 
+            onError="this.src='/images/noneAvatar.svg'" alt="userAvatar" />
           </picture>
           <span class="Person-Name">${user.name}</span>
           <span class="Person-Value fontType_caption fontColor_gray">${user.valueText}</span>
         </div>
       </div>
-      <div class="LeadersBody-Block LeadersBody-Block_${place}">
+      <div class="LeadersBody-Block LeadersBody-Block_${pedestalNumber}">
         <div class="LeadersBody-PlaceWrapper">
           <span class="LeadersBody-Place fontType_headline">${place}</span>
         </div>
@@ -95,6 +87,9 @@ const LeadersPage = (data) => {
 const VotePage = (data) => {
   const VoteBody = (data) => {
     let persons = VoteBody_Persons(data);
+    let offset = data.offset ?? 0;
+    let kLand = 6,
+      kPort = 8;
     return /* html */ `
       <div class="PageBodyWrapper">
         <div class="VoteBody VoteBody_landscape">
@@ -104,14 +99,14 @@ const VotePage = (data) => {
            ${persons[4]}
           </div>
           <div class="VoteBody-ButtonsGroup">
-            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled" 
-              data-action="update" data-params="{alias: 'vote', data: {offset: ${
-                data.users[0].id
-              }}}"></div>
-            <div class="VoteBody-Button VoteBody-Button_bottom" 
-              data-action="update" data-params="{alias: 'vote', data: {offset: ${
-                data.users[6] ? data.users[6].id : -1
-              }}}"></div>
+            <div class="VoteBody-Button VoteBody-Button_top ${offset <= 0 ? "VoteBody-Button_disabled" : " "}" 
+              data-action="update" data-params='{"alias": "vote", "data": {"offset": ${offset ? Math.max(offset - kLand, 0) : 0}}}'></div>
+            <div class="VoteBody-Button VoteBody-Button_bottom ${
+              offset + kLand >= data.users.length? "VoteBody-Button_disabled" : " "
+            }" 
+              data-action="update" data-params='{"alias": "vote", "data": {"offset": ${
+                data.users[offset + kLand] ? offset + kLand : offset
+              }}}'></div>
           </div>
           <div class="VoteBody-PersonsGroup">
            ${persons[2]}
@@ -127,18 +122,15 @@ const VotePage = (data) => {
             ${persons[6]}
           </div>
           <div class="VoteBody-ButtonsGroup">
-            <div class="VoteBody-Button VoteBody-Button_top VoteBody-Button_disabled"
-              data-params="{alias: 'vote', data: {offset: ${data.users[0].id}}}"></div>
+            <div class="VoteBody-Button VoteBody-Button_top ${offset <= 0 ? "VoteBody-Button_disabled" : " "}"
+              data-action="update" data-params='{"alias": "vote", "data": {"offset": ${offset ? Math.max(offset - kPort, 0) : 0}}}'></div>
               <div class="VoteBody-PersonsGroup">
                 ${persons[1]}
                 ${persons[4]}            
               </div>
-            <div class="VoteBody-Button VoteBody-Button_bottom ${
-              data.users[8] ? "" : "VoteBody-Button_disabled"
-            }"
-              data-params="{alias: 'vote', data: {offset: ${
-                data.users[8] ? data.users[8].id : -1
-              }}}"></div>
+            <div class="VoteBody-Button VoteBody-Button_bottom 
+              ${offset + kPort >= data.users.length? "VoteBody-Button_disabled" : " "}"
+              data-action="update" data-params='{"alias": "vote", "data": {"offset": ${data.users[offset + kPort] ? offset + kPort : offset }}}'></div>
           </div>
           <div class="VoteBody-PersonsGroup">
             ${persons[2]}
@@ -149,9 +141,10 @@ const VotePage = (data) => {
       </div>
 `;
   };
-  const VoteBody_Persons = ({ users, selectedUserId }) => {
+  const VoteBody_Persons = ({ users, offset, selectedUserId }) => {
     let persons = [];
-    for (let i = 0; i < 8; i++) {
+    offset = offset ?? 0;
+    for (let i = offset; i < offset + 8; i++) {
       let user = users[i];
       if (!user) {
         persons.push("<div class='Person Person_ordinary'></div>");
@@ -165,7 +158,7 @@ const VotePage = (data) => {
   const VoteBody_Person = (user, emoji, isSelected) => /* html */ `
     <div class="Person Person_ordinary Person_ordinary_hoverOn ${
       isSelected ? "Person_ordinary_selected" : ""
-    }" data-action="update" data-params="{alias: 'leaders',  data: { selectedUserId: ${user.id}}}">
+    }" data-action="selectUser" data-params='{"data": { "selectedUserId": ${user.id}}}'>
       <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
         <source srcset="/images/2x/${user.avatar}" media="(min-width: 700px)">
         <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
@@ -357,10 +350,7 @@ const ActivityPage = (data) => {
       "max",
       borders.secondBorder > 0 ? borders.firstBorder + 1 + " — " + borders.secondBorder : "—"
     ) +
-    ActivityBody_Inteval(
-      "extra",
-      borders.lastBorder > 0 ? borders.secondBorder + 1 + " — " + borders.lastBorder : "—"
-    );
+    ActivityBody_Inteval("extra", borders.lastBorder > 0 ? borders.secondBorder + 1 + " — " + borders.lastBorder : "—");
   const ActivityBody_Inteval = (intervalType, value) => /* html */ `
     <div class="ActivityBody-Interval">
       <div class="ActivityBody-IntervalBlock ActivityBody-IntervalBlock_${intervalType}">
