@@ -10,6 +10,9 @@
   }
   &-Pedestal {
     @include media(width, (100px, 120px, 190px, 230px, 320px));
+    &_thirdWheel {
+      display: none;
+    }
     &_1 {
       z-index: 5;
     }
@@ -67,6 +70,12 @@
   .LeadersBody {
     &-Pedestal {
       @include mediaPortrait(width, (100px, 120px, 130px, 220px));
+      position: relative;
+      &_thirdWheel {
+        display: block;
+        position: absolute;
+        z-index: 10;
+      }
       &_2,
       &_3 {
         @include mediaPortrait(margin-right, (-10px, -16px, -20px, -25px));

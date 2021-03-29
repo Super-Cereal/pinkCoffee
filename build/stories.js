@@ -36,6 +36,7 @@ const LeadersPage = (data) => {
     }
     // на случай если выбранный юзер не находится в лидерах
     if (selectedUserId) {
+      // для горизонтальной ориентации
       let selectedUserIndex = users.findIndex((u) => u.id === selectedUserId);
       if (selectedUserIndex > 4) {
         usersPedestals[4] = LeadersBody_Pedestal(
@@ -44,9 +45,12 @@ const LeadersPage = (data) => {
           "👍"
         );
       }
+      // для портретной ориентации
       if (selectedUserId > 3) {
-        usersPedestals[3].push(
-          LeadersBody_ThirdWheel(users[selectedUserIndex], selectedUserIndex + 1, "👍")
+        usersPedestals[0] += LeadersBody_ThirdWheel(
+          users[selectedUserIndex],
+          selectedUserIndex + 1,
+          "👍"
         );
       }
     }
@@ -72,7 +76,19 @@ const LeadersPage = (data) => {
     </section>
 `;
   const LeadersBody_ThirdWheel = (user, place, emoji) => /* html */ `
-  
+  <section class="LeadersBody-Pedestal_thirdWheel">
+    <div class="Person Person_ordinary">
+      <picture class="Person-AvatarWrapper" data-emoji="${emoji}">
+        <source srcset="/images/2x/${user.avatar}" media="(max-width: 700px)">
+        <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
+      </picture>
+      <span class="Person-Name">${user.name}</span>
+      <span class="Person-Value fontType_caption">${user.valueText}</span>
+    </div>
+    <div class="LeadersBody-PlaceWrapper">
+      <span class="LeadersBody-Place fontType_headline">${place}</span>
+    </div>
+  </section>
   `;
   return Header(data) + LeadersBody(data);
 };
