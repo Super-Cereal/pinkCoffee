@@ -45,6 +45,9 @@ const LeadersPage = (data) => {
         );
       }
       if (selectedUserId > 3) {
+        usersPedestals[3].push(
+          LeadersBody_ThirdWheel(users[selectedUserIndex], selectedUserIndex + 1, "👍")
+        );
       }
     }
     return usersPedestals;
@@ -68,6 +71,9 @@ const LeadersPage = (data) => {
       </div>
     </section>
 `;
+  const LeadersBody_ThirdWheel = (user, place, emoji) => /* html */ `
+  
+  `;
   return Header(data) + LeadersBody(data);
 };
 const VotePage = (data) => {
@@ -428,10 +434,10 @@ const DiagramPage = (data) => {
       dashoffset[2] - k
     }" transform="translate(18.7, 18.7)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint1_light_radial)" stroke-opacity="0.8"
-        stroke-dasharray="+${dasharray[3] - 0.27} 100" stroke-dashoffset="-${dashoffset[2]}"
+        stroke-dasharray="+${dasharray[3] - 0.2} 100" stroke-dashoffset="-${dashoffset[2]}"
         transform="translate(18.7, 18.7)" stroke-width="5.6" />
     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="0.5 100" stroke-dashoffset="-${
-      dashoffset[3] - k + 0.27
+      dashoffset[3] - k + 0.2
     }" transform="translate(18.7, 18.7)"/>
   </svg>
   
@@ -459,26 +465,26 @@ const DiagramPage = (data) => {
          stroke-dasharray="+${dasharray[0]} 100" transform="translate(18.7, 18.7)" 
          stroke-width="5.6" />
      <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
-       dashoffset[0] - k
-     }" transform="translate(18.7, 18.7)"/>
+    dashoffset[0] - k
+  }" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint0_dark_radial)" stroke-opacity="0.75"
          stroke-dasharray="+${dasharray[1]} 100" stroke-dashoffset="-${dashoffset[0]}"
          transform="translate(18.7, 18.7)"  stroke-width="5.6" />
      <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
-       dashoffset[1] - k
-     }" transform="translate(18.7, 18.7)"/>
+    dashoffset[1] - k
+  }" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint2_dark_radial)" stroke-opacity="0.55"
          stroke-dasharray="+${dasharray[2]} 100" stroke-dashoffset="-${dashoffset[1]}" 
          transform="translate(18.7, 18.7)" stroke-width="5.6" />
      <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
-       dashoffset[2] - k
-     }" transform="translate(18.7, 18.7)"/>
+    dashoffset[2] - k
+  }" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint1_dark_radial)" stroke-opacity="0.5"
-         stroke-dasharray="+${dasharray[3] - 0.27} 100" stroke-dashoffset="-${dashoffset[2]}"
+         stroke-dasharray="+${dasharray[3] - 0.2} 100" stroke-dashoffset="-${dashoffset[2]}"
          transform="translate(18.7, 18.7)" stroke-width="5.6" />
      <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
-       dashoffset[3] - k + 0.27
-     }" transform="translate(18.7, 18.7)"/>
+    dashoffset[3] - k + 0.2
+  }" transform="translate(18.7, 18.7)"/>
   </svg>
   `;
   const DiagramBody_Legend = (categories) => {
