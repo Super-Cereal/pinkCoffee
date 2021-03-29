@@ -358,17 +358,19 @@ const DiagramPage = (data) => {
     let dasharray = [],
       dashoffset = [];
     let curoffset = 0;
+    let k = 0.5;
+    // k - расстояние между частями диаграммы
     for (i in categories) {
       let numberOfCommits = Number(categories[i].valueText.split(" ")[0]);
       let percent = (numberOfCommits * 100) / total;
-      dasharray.push(percent - 1);
+      dasharray.push(percent - k);
       dashoffset.push(curoffset + percent);
       curoffset += percent;
     }
     return /* html */ `
     <div class="DiagramBody-Diagram Diagram">
       <div class="Diagram-Img">
-        ${DiagramBody_Diagram_svg(dasharray, dashoffset)}
+        ${DiagramBody_Diagram_svg(dasharray, dashoffset, k)}
       </div>
       <div class="Diagram-Text Diagram-Text_landscape">
         <span class="fontType_subhead">${totalText}</span>
@@ -381,7 +383,7 @@ const DiagramPage = (data) => {
     </div>
   `;
   };
-  const DiagramBody_Diagram_svg = (dasharray, dashoffset) => /* html */ `
+  const DiagramBody_Diagram_svg = (dasharray, dashoffset, k) => /* html */ `
     <svg class="Diagram-Svg Diagram-Svg_light" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
     version="1.1" width="240" height="240" viewbox="0 0 37.4 37.4">
     <defs>
@@ -405,26 +407,26 @@ const DiagramPage = (data) => {
     <circle r="15.9" fill="transparent" stroke="url(#paint3_light_radial)" stroke-opacity="0.8"
         stroke-dasharray="+${dasharray[0]} 100" transform="translate(18.7, 18.7)" 
         stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-      dashoffset[0] - 1
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="0.5 100" stroke-dashoffset="-${
+      dashoffset[0] - k
     }" transform="translate(18.7, 18.7)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint0_light_radial)" stroke-opacity="0.7"
         stroke-dasharray="+${dasharray[1]} 100" stroke-dashoffset="-${dashoffset[0]}"
         transform="translate(18.7, 18.7)"  stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-      dashoffset[1] - 1
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="0.5 100" stroke-dashoffset="-${
+      dashoffset[1] - k
     }" transform="translate(18.7, 18.7)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint2_light_radial)" stroke-opacity="0.35"
         stroke-dasharray="+${dasharray[2]} 100" stroke-dashoffset="-${dashoffset[1]}" 
         transform="translate(18.7, 18.7)" stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-      dashoffset[2] - 1
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="0.5 100" stroke-dashoffset="-${
+      dashoffset[2] - k
     }" transform="translate(18.7, 18.7)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint1_light_radial)" stroke-opacity="0.8"
         stroke-dasharray="+${dasharray[3]} 100" stroke-dashoffset="-${dashoffset[2]}"
         transform="translate(18.7, 18.7)" stroke-width="5.6" />
-    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-      dashoffset[3] - 1
+    <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="0.5 100" stroke-dashoffset="-${
+      dashoffset[3] - k
     }" transform="translate(18.7, 18.7)"/>
   </svg>
   
@@ -451,26 +453,26 @@ const DiagramPage = (data) => {
      <circle r="15.9" fill="transparent" stroke="url(#paint3_dark_radial)" stroke-opacity="0.8"
          stroke-dasharray="+${dasharray[0]} 100" transform="translate(18.7, 18.7)" 
          stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-       dashoffset[0] - 1
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
+       dashoffset[0] - k
      }" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint0_dark_radial)" stroke-opacity="0.75"
          stroke-dasharray="+${dasharray[1]} 100" stroke-dashoffset="-${dashoffset[0]}"
          transform="translate(18.7, 18.7)"  stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-       dashoffset[1] - 1
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
+       dashoffset[1] - k
      }" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint2_dark_radial)" stroke-opacity="0.55"
          stroke-dasharray="+${dasharray[2]} 100" stroke-dashoffset="-${dashoffset[1]}" 
          transform="translate(18.7, 18.7)" stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-       dashoffset[2] - 1
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
+       dashoffset[2] - k
      }" transform="translate(18.7, 18.7)"/>
      <circle r="15.9" fill="transparent" stroke="url(#paint1_dark_radial)" stroke-opacity="0.5"
-         stroke-dasharray="+${dasharray[3]} 100" stroke-dashoffset="-${dashoffset[2]}"
+         stroke-dasharray="+${dasharray[3] - 0.27} 100" stroke-dashoffset="-${dashoffset[2]}"
          transform="translate(18.7, 18.7)" stroke-width="5.6" />
-     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="1 100" stroke-dashoffset="-${
-       dashoffset[3] - 1
+     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="${k} 100" stroke-dashoffset="-${
+       dashoffset[3] - k + 0.27
      }" transform="translate(18.7, 18.7)"/>
   </svg>
   `;
