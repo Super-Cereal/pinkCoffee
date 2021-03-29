@@ -209,8 +209,8 @@ const ChartPage = (data) => {
   const ChartBody_User = (user) => /* html */ `
     <div class="Person Person_horizontal">
       <picture class="Person-AvatarWrapper">
-        <source srcset="/images/1x/${user.avatar}" media="(max-width: 700px)">
-        <img class="Person-Avatar" src="/images/1x/${user.avatar}" alt="userAvatar" />
+        <source srcset="/images/2x/${user.avatar}" media="(max-width: 700px)">
+        <img class="Person-Avatar" src="/images/2x/${user.avatar}" alt="userAvatar" />
       </picture>
       <div class="Person-Info">
         <span class="Person-Name">${user.name}</span>
