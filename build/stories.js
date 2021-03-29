@@ -26,8 +26,13 @@ const LeadersPage = (data) => {
   const LeadersBody_Pedestals = ({ users, emoji, selectedUserId }) => {
     let usersPedestals = [];
     for (let i = 0; i < 5; i++) {
-      let curUserEmoji = i === 0 ? emoji : users[i].id === selectedUserId ? "👍" : "";
-      usersPedestals.push(LeadersBody_Pedestal(users[i], i + 1, curUserEmoji));
+      let user = users[i];
+      if (!user) {
+        usersPedestals.push("<div></div>");
+        continue;
+      }
+      let curUserEmoji = i === 0 ? emoji : user.id === selectedUserId ? "👍" : "";
+      usersPedestals.push(LeadersBody_Pedestal(user, i + 1, curUserEmoji));
     }
     // на случай если выбранный юзер не находится в лидерах
     if (selectedUserId) {
@@ -423,10 +428,10 @@ const DiagramPage = (data) => {
       dashoffset[2] - k
     }" transform="translate(18.7, 18.7)"/>
     <circle r="15.9" fill="transparent" stroke="url(#paint1_light_radial)" stroke-opacity="0.8"
-        stroke-dasharray="+${dasharray[3]} 100" stroke-dashoffset="-${dashoffset[2]}"
+        stroke-dasharray="+${dasharray[3] - 0.27} 100" stroke-dashoffset="-${dashoffset[2]}"
         transform="translate(18.7, 18.7)" stroke-width="5.6" />
     <circle r="15.9" fill="transparent" stroke="transparent" stroke-width="5.6" stroke-dasharray="0.5 100" stroke-dashoffset="-${
-      dashoffset[3] - k
+      dashoffset[3] - k + 0.27
     }" transform="translate(18.7, 18.7)"/>
   </svg>
   
