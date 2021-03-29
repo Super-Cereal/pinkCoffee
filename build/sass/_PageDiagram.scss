@@ -139,10 +139,10 @@
       @include mediaPortrait(
         transform,
         (
-          scale($min) rotate(-120deg),
-          scale($mid) rotate(-120deg),
-          scale($max) rotate(-120deg),
-          scale($extra) rotate(-120deg)
+          scale($min) rotate(-110deg),
+          scale($mid) rotate(-110deg),
+          scale($max) rotate(-110deg),
+          scale($extra) rotate(-110deg)
         )
       );
     }
