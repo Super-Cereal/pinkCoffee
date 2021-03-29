@@ -46,7 +46,7 @@ const LeadersPage = (data) => {
         );
       }
       // для портретной ориентации
-      if (selectedUserId > 3) {
+      if (selectedUserIndex > 2) {
         usersPedestals[0] += LeadersBody_ThirdWheel(
           users[selectedUserIndex],
           selectedUserIndex + 1,

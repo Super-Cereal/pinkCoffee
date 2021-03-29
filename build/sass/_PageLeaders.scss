@@ -11,7 +11,24 @@
   &-Pedestal {
     @include media(width, (100px, 120px, 190px, 230px, 320px));
     &_thirdWheel {
+      // чувак за которого голосовали, 
+      // не попавший в топ три, для портретной ориентации;
       display: none;
+      position: absolute;
+      z-index: 10;
+      bottom: 16px;
+      .Person {
+        position: relative;
+        &::after {
+          display: block;
+          content: "";
+          position: absolute;
+          height: 1px;
+          width: 60px;
+          background-color: $gray;
+          bottom: 6px;
+        }
+      }
     }
     &_1 {
       z-index: 5;
@@ -37,8 +54,9 @@
       }
     }
   }
-  &-PersonWrapper {
-    @include media(margin-bottom, (10px, 16px, 20px));
+  
+  &-PlaceWrapper {
+    text-align: center;
   }
   &-Block {
     text-align: center;
@@ -73,8 +91,6 @@
       position: relative;
       &_thirdWheel {
         display: block;
-        position: absolute;
-        z-index: 10;
       }
       &_2,
       &_3 {
@@ -97,9 +113,6 @@
           @include mediaPortrait(padding-left, (10px, 16px, 20px, 25px));
         }
       }
-    }
-    &-PersonWrapper {
-      @include mediaPortrait(margin-bottom, (16px, 16px, 20px, 35px));
     }
     &-Block {
       &_1 {
@@ -131,6 +144,9 @@
         box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5),
           inset 0px 0px 20px rgba(255, 176, 57, 0.8);
       }
+    }
+    &-Pedestal_thirdWheel .Person::after {
+      background-color: $black;
     }
   }
 }

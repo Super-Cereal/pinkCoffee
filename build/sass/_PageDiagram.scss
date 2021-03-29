@@ -89,11 +89,11 @@
     @include media(
       transform,
       (
-        scale(1) rotate(-120deg),
-        scale(1) rotate(-120deg),
-        scale($mid) rotate(-120deg),
-        scale($max) rotate(-120deg),
-        scale($extra) rotate(-120deg)
+        scale(1) rotate(-119deg),
+        scale(1) rotate(-119deg),
+        scale($mid) rotate(-119deg),
+        scale($max) rotate(-119deg),
+        scale($extra) rotate(-119deg)
       )
     );
     &_light {
@@ -132,10 +132,10 @@
       @include mediaPortrait(
         transform,
         (
-          scale($min) rotate(-120deg),
-          scale($mid) rotate(-120deg),
-          scale($max) rotate(-120deg),
-          scale($extra) rotate(-120deg)
+          scale($min) rotate(-119deg),
+          scale($mid) rotate(-119deg),
+          scale($max) rotate(-119deg),
+          scale($extra) rotate(-119deg)
         )
       );
     }
